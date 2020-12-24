@@ -75,7 +75,7 @@ function get_ubuntu_version()
 # 安装ubuntu必备软件
 function install_prepare_software_on_ubuntu()
 {
-    sudo apt-get update
+    echo "\n" | sudo add-apt-repository ppa:neovim-ppa/unstable
 
     version=$(get_ubuntu_version)
     if [ $version -eq 14 ];then
@@ -104,7 +104,7 @@ function install_prepare_software_on_archlinux()
 # 拷贝文件
 function copy_files()
 {
-    mkdir ${NEOVIM_CONFIG_DIR}
+    mkdir -p ${NEOVIM_CONFIG_DIR}
     rm -rf ${NEOVIM_CONFIG_DIR}/init.vim
     ln -s ${PWD}/init.vim ${NEOVIM_CONFIG_DIR}
 
@@ -114,7 +114,7 @@ function copy_files()
     rm -rf ${NEOVIM_CONFIG_DIR}/init.vim.custom.config
     ln -s ${PWD}/init.vim.custom.config ${NEOVIM_CONFIG_DIR}
 
-    mkdir ${NEOVIM_DIR}
+    mkdir -p ${NEOVIM_DIR}
     rm -rf ${NEOVIM_DIR}/colors
     ln -s ${PWD}/colors ${NEOVIM_DIR}
 
