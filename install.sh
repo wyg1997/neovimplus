@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 NEOVIM_CONFIG_DIR=~/.config/nvim
 NEOVIM_DIR=~/.local/share/nvim/site
@@ -84,7 +85,11 @@ function install_prepare_software_on_ubuntu()
         sudo apt-get install -y cmake
     fi
 
-    sudo apt-get install -y neovim exuberant-ctags build-essential python python-dev python3-dev fontconfig libfile-next-perl ack-grep git
+    sudo apt-get install -y neovim npm exuberant-ctags build-essential python python-dev python3-dev fontconfig libfile-next-perl ack-grep git
+    # 安装最新版nodejs(coc.nvim要求)
+    sudo npm config set registry https://registry.npm.taobao.org
+    sudo npm install n -g
+    sudo n stable
 }
 
 # 安装ubuntu系必备软件
