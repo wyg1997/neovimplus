@@ -325,6 +325,9 @@ nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
+" floaterm
+nmap <silent> <c-n> :FloatermNew<cr>
+
 " ======================================> coc.vim start
 
 " if hidden is not set, TextEdit might fail.
