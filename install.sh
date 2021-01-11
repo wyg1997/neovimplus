@@ -147,12 +147,13 @@ function install_fonts_on_linux()
     fc-cache -vf ~/.local/share/fonts
 }
 
+# TODO: some bugs here
 # 安装coc.nvim补全支持
 function install_coc_support()
 {
     python3 -m pip install neovim jedi
 
-    nvim -c "CocInstall coc-clangd" -c "q"
+    nvim -c "CocInstall coc-clangd" -c "q"  # -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
     nvim -c "CocInstall coc-cmake" -c "q"
     nvim -c "CocInstall coc-git" -c "q"
     nvim -c "CocInstall coc-highlight" -c "q"
