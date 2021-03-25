@@ -147,25 +147,25 @@ function install_fonts_on_linux()
     fc-cache -vf ~/.local/share/fonts
 }
 
-# TODO: some bugs here
 # 安装coc.nvim补全支持
 function install_coc_support()
 {
     python3 -m pip install neovim jedi
 
-    nvim -c "CocInstall coc-clangd" -c "q"  # -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-    nvim -c "CocInstall coc-cmake" -c "q"
-    nvim -c "CocInstall coc-git" -c "q"
-    nvim -c "CocInstall coc-highlight" -c "q"
-    nvim -c "CocInstall coc-jedi" -c "q"
-    nvim -c "CocInstall coc-json" -c "q"
-    nvim -c "CocInstall coc-python" -c "q"
-    nvim -c "CocInstall coc-sh" -c "q"
-    nvim -c "CocInstall coc-snippets" -c "q"
-    nvim -c "CocInstall coc-vimlsp" -c "q"
-    nvim -c "CocInstall coc-yaml" -c "q"
-    nvim -c "CocInstall coc-syntax" -c "q"
-    nvim -c "CocInstall coc-pairs" -c "q"
+    nvim -c "CocInstall -sync coc-clangd"       -c "qa"  # -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    nvim -c "CocInstall -sync coc-cmake"        -c "qa"
+    nvim -c "CocInstall -sync coc-git"          -c "qa"
+    nvim -c "CocInstall -sync coc-highlight"    -c "qa"
+    nvim -c "CocInstall -sync coc-jedi"         -c "qa"
+    nvim -c "CocInstall -sync coc-json"         -c "qa"
+    nvim -c "CocInstall -sync coc-python"       -c "qa"
+    nvim -c "CocInstall -sync coc-sh"           -c "qa"
+    nvim -c "CocInstall -sync coc-snippets"     -c "qa"
+    nvim -c "CocInstall -sync coc-vimlsp"       -c "qa"
+    nvim -c "CocInstall -sync coc-yaml"         -c "qa"
+    nvim -c "CocInstall -sync coc-syntax"       -c "qa"
+    nvim -c "CocInstall -sync coc-pairs"        -c "qa"
+    nvim -c "CocInstall -sync coc-markdownlint" -c "qa"
 }
 
 # 安装vim插件
