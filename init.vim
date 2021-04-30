@@ -79,7 +79,9 @@ set ignorecase          " 搜索时大小写不敏感
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 缓存设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set hidden              " 允许隐藏未保存的buffer
 set nobackup            " 设置不备份
+set nowritebackup       " 不生成备份文件
 set noswapfile          " 禁止生成临时文件
 set autoread            " 文件在vim之外修改过，自动重新读入
 set autowrite           " 设置自动保存
@@ -165,7 +167,6 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'docunext/closetag.vim'
 Plug 'nvie/vim-flake8'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'voldikss/vim-floaterm'
 
 " 加载自定义插件
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
@@ -177,19 +178,14 @@ call plug#end()
 " load vim default plugin
 runtime macros/matchit.vim
 
-" " 编辑vimrc相关配置文件
-" nnoremap <leader>e :edit $MYVIMRC<cr>
-" nnoremap <leader>vc :edit ~/.vimrc.custom.config<cr>
-" nnoremap <leader>vp :edit ~/.vimrc.custom.plugins<cr>
-
 " 查看vimplus的help文件
 nnoremap <leader>h :view +let\ &l:modifiable=0 ~/.vimplus/help.md<cr>
 
 " 打开当前光标所在单词的vim帮助文档
 nnoremap <leader>H :execute ":help " . expand("<cword>")<cr>
 
-" 重新加载vimrc文件
-nnoremap <leader>s :source $MYVIMRC<cr>
+" 查看neovimplus的help文件
+nnoremap <leader>h :view +let\ &l:modifiable=0 ~/.neovimplus/help.md<cr>
 
 " " 安装、更新、删除插件
 " nnoremap <leader><leader>i :PlugInstall<cr>
@@ -238,16 +234,6 @@ nnoremap <silent> gf :Switch<cr>
 " nnoremap <leader><leader>if :FormatIf<cr>
 " nnoremap <leader><leader>t dd :GenTryCatch<cr>
 " xnoremap <leader><leader>t d :GenTryCatch<cr>
-
-" change-colorscheme
-nnoremap <silent> <F9> :PreviousColorScheme<cr>
-inoremap <silent> <F9> <esc> :PreviousColorScheme<cr>
-nnoremap <silent> <F10> :NextColorScheme<cr>
-inoremap <silent> <F10> <esc> :NextColorScheme<cr>
-nnoremap <silent> <F11> :RandomColorScheme<cr>
-inoremap <silent> <F11> <esc> :RandomColorScheme<cr>
-nnoremap <silent> <F12> :ShowColorScheme<cr>
-inoremap <silent> <F12> <esc> :ShowColorScheme<cr>
 
 " prepare-code
 let g:prepare_code_plugin_path = expand($HOME . "/.vim/plugged/prepare-code")
@@ -325,17 +311,7 @@ nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
-" floaterm
-nmap <silent> <c-n> :FloatermNew<cr>
-
-" ======================================> coc.vim start
-
-" if hidden is not set, TextEdit might fail.
-set hidden
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
- 
+" ======================================> coc.vim setting start
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
  
@@ -357,9 +333,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
- 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
  
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -423,13 +396,13 @@ omap af <Plug>(coc-funcobj-a)
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
  
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" " Use `:Fold` to fold current buffer
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
  
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" ======================================> coc.vim end
+" ======================================> coc.vim setting end
 
 " 加载自定义配置
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.config'))
