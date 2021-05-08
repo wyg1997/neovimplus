@@ -311,6 +311,10 @@ nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
+" Termdebug
+let g:termdebug_wide = 163
+tnoremap <ESC><ESC> <C-\><C-N>
+
 " ======================================> coc.vim setting start
 " You will have bad experience for diagnostic messages when it's default 4000.
 set updatetime=300
