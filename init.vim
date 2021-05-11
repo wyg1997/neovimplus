@@ -130,43 +130,40 @@ command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.vim/plugged')
 
-Plug 'chxuan/cpp-mode'
-Plug 'chxuan/vim-edit'
-Plug 'chxuan/change-colorscheme'
-Plug 'chxuan/prepare-code'
-Plug 'chxuan/vimplus-startify'
-Plug 'chxuan/tagbar'
-Plug 'Yggdroot/LeaderF'
-Plug 'mileszs/ack.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'jiangmiao/auto-pairs'
-Plug 'scrooloose/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'ryanoasis/vim-devicons'
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/gv.vim'
+Plug 'derekwyatt/vim-fswitch'  " .h和.c/.cc/.cpp文件切换
+Plug 'chxuan/vim-edit'  " 方便的文本编辑工具
+Plug 'Yggdroot/LeaderF'  " 强大的文件搜索工具
+Plug 'mileszs/ack.vim'  " 快速的文件内容搜索工具
+Plug 'easymotion/vim-easymotion'  " 单词跳转
+Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
+Plug 'jiangmiao/auto-pairs'  " 括号匹配工具
+Plug 'scrooloose/nerdtree'  " 文件树查看
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " 美化NerdTree的显示
+Plug 'Xuyuanp/nerdtree-git-plugin'  " NerdTree git图标显示
+Plug 'tpope/vim-fugitive'  " Git集成插件
+Plug 'tpope/vim-surround'  " 括号高效处理工具
+Plug 'tpope/vim-commentary'  " 代码注释工具
+Plug 'tpope/vim-repeat'  " 扩展vim的repeat
+Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
+Plug 'vim-airline/vim-airline'  " vim状态栏美化
+Plug 'vim-airline/vim-airline-themes'  " vim状态栏主题
+Plug 'ryanoasis/vim-devicons'  " 图标美化
+Plug 'junegunn/vim-slash'  " vim搜索优化
+Plug 'junegunn/gv.vim'  " git commit查看工具
+" 以下5个插件将不同对象视为整体
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-function'
-Plug 'sgur/vim-textobj-parameter'
-Plug 'Shougo/echodoc.vim'
-Plug 'terryma/vim-smooth-scroll'
-Plug 'rhysd/clever-f.vim'
-Plug 'vim-scripts/indentpython.vim'
-Plug 'docunext/closetag.vim'
-Plug 'nvie/vim-flake8'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kana/vim-textobj-indent'  " 定义缩进obj
+Plug 'kana/vim-textobj-function'  " 定义function obj
+Plug 'sgur/vim-textobj-parameter'  " 定义参数obj
+
+Plug 'Shougo/echodoc.vim'  " 补全时显示函数签名
+Plug 'terryma/vim-smooth-scroll'  " 平滑滚动
+Plug 'rhysd/clever-f.vim'  " 快速字符跳转
+Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
+Plug 'docunext/closetag.vim'  " 自动完成html标签
+Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
+Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 
 " 加载自定义插件
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
@@ -186,11 +183,6 @@ nnoremap <leader>H :execute ":help " . expand("<cword>")<cr>
 
 " 查看neovimplus的help文件
 nnoremap <leader>h :view +let\ &l:modifiable=0 ~/.neovimplus/help.md<cr>
-
-" " 安装、更新、删除插件
-" nnoremap <leader><leader>i :PlugInstall<cr>
-" nnoremap <leader><leader>u :PlugUpdate<cr>
-" nnoremap <leader><leader>c :PlugClean<cr>
 
 " 分屏窗口移动
 nnoremap <c-j> <c-w>j
@@ -213,36 +205,47 @@ set background=dark
 let g:onedark_termcolors=256
 colorscheme onedark
 
-" airline
-let g:airline_theme="onedark"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
-" cpp-mode
-" nnoremap <leader>y :CopyCode<cr>
-" nnoremap <leader>p :PasteCode<cr>
-" nnoremap <leader>U :GoToFunImpl<cr>
-nnoremap <silent> gf :Switch<cr>
-" nnoremap <leader><leader>fp :FormatFunParam<cr>
-" nnoremap <leader><leader>if :FormatIf<cr>
-" nnoremap <leader><leader>t dd :GenTryCatch<cr>
-" xnoremap <leader><leader>t d :GenTryCatch<cr>
-
-" prepare-code
-let g:prepare_code_plugin_path = expand($HOME . "/.vim/plugged/prepare-code")
+" fswitch
+nmap <silent> gf :FSHere<cr>
 
 " vim-edit
 nnoremap Y :CopyText<cr>
 nnoremap D :DeleteText<cr>
 nnoremap C :ChangeText<cr>
 nnoremap <leader>rr :ReplaceTo<space>
+
+" LeaderF
+nnoremap <leader>f :LeaderfFile .<cr>
+nnoremap <leader>t :LeaderfFunction!<cr>
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_UseCache = 0
+let g:Lf_NormalMap = {
+	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
+	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
+	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
+	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
+	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
+	\ }
+
+" ack
+nnoremap <leader>F :Ack!<space>
+
+" vim-easymotion
+let g:EasyMotion_smartcase = 1
+map <leader>w <Plug>(easymotion-bd-w)
+nmap <leader>w <Plug>(easymotion-overwin-w)
+
+" incsearch.vim
+map /  <Plug>(incsearch-forward)
+map g/ <Plug>(incsearch-stay)
+
+" auto-pairs
+let g:AutoPairsFlyMode = 0
+let g:AutoPairsMultilineClose = 0
 
 " nerdtree
 nnoremap <silent> <leader>n :NERDTreeToggle<cr>
@@ -253,20 +256,7 @@ let g:NERDTreeHighlightFolders = 1
 let g:NERDTreeHighlightFoldersFullName = 1 
 let g:NERDTreeDirArrowExpandable='▷'
 let g:NERDTreeDirArrowCollapsible='▼'
-
-" tagbar
-let g:tagbar_width = 30
-nnoremap <silent> <leader>t :TagbarToggle<cr>
-
-" incsearch.vim
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
-" vim-easymotion
-let g:EasyMotion_smartcase = 1
-map <leader>w <Plug>(easymotion-bd-w)
-nmap <leader>w <Plug>(easymotion-overwin-w)
+let g:NERDTreeIgnore=['\.pyc','\~$','\.swp']
 
 " nerdtree-git-plugin
 let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -282,34 +272,34 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
-" LeaderF
-nnoremap <leader>f :LeaderfFile .<cr>
-let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-            \}
-let g:Lf_UseCache = 0
+" airline
+let g:airline_theme="onedark"
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 
-" ack
-nnoremap <leader>F :Ack!<space>
+" vim-slash
+noremap <plug>(slash-after) zz
+
+" gv
+nnoremap <leader>g :GV<cr>
+nnoremap <leader>G :GV!<cr>
+nnoremap <leader>gg :GV?<cr>
 
 " echodoc.vim
 let g:echodoc_enable_at_startup = 1
-
-" tabular
-nnoremap <leader>l :Tab /\|<cr>
-nnoremap <leader>= :Tab /=<cr>
 
 " vim-smooth-scroll
 noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
-
-" gv
-nnoremap <leader>g :GV<cr>
-nnoremap <leader>G :GV!<cr>
-nnoremap <leader>gg :GV?<cr>
 
 " Termdebug
 let g:termdebug_wide = 163
@@ -349,7 +339,7 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> <leader>d <Plug>(coc-definition)
-nmap <silent> <leader>y <Plug>(coc-type-definition)
+" nmap <silent> <leader>y <Plug>(coc-type-definition)
 nmap <silent> <leader>i <Plug>(coc-implementation)
 nmap <silent> <leader>r <Plug>(coc-references)
  

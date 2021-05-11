@@ -1,60 +1,222 @@
 ## 插件相关
 
+Leader Key: `,`
+
+### fswitch
+
+.h和.c/.cc/.cpp文件切换。
+
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
-| `,`                 | Leader Key                                |
-| `<leader>n`         | 打开/关闭代码资源管理器                   |
-| `<leader>t`         | 打开/关闭函数列表                         |
-| `<leader>a`         | .h .cpp 文件切换                          |
-| `<leader>u`         | 转到函数声明                              |
-| `<leader>U`         | 转到函数实现                              |
-| `<leader>u`         | 转到变量声明                              |
-| `<leader>o`         | 打开include文件                           |
-| `<leader>y`         | 拷贝函数声明                              |
-| `<leader>p`         | 生成函数实现                              |
-| `<leader>w`         | 单词跳转                                  |
-| `<leader>f`         | 搜索~目录下的文件                         |
-| `<leader>F`         | 搜索当前目录下的文本                      |
-| `<leader>g`         | 显示git仓库提交记录                       |
-| `<leader>G`         | 显示当前文件提交记录                      |
-| `<leader>gg`        | 显示当前文件在某个commit下的完整内容      |
-| `<leader>ff`        | 语法错误自动修复(FixIt)                   |
-| `<c-p>`             | 切换到上一个buffer                        |
-| `<c-n>`             | 切换到下一个buffer                        |
-| `<leader>d`         | 删除当前buffer                            |
-| `<leader>D`         | 删除当前buffer外的所有buffer              |
-| `vim`               | 运行vim编辑器时,默认启动开始页面          |
-| `<F5>`              | 异步执行python代码或调试                  |
-| `<F9>`              | 显示上一主题                              |
-| `<F10>`             | 显示下一主题                              |
-| `<leader>l`         | 按竖线对齐                                |
-| `<leader>=`         | 按等号对齐                                |
+| `gf`                | 切换文件并在当前窗口显示                  |
+
+### vim-edit
+
+方便的文本编辑工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
 | `Ya`                | 复制行文本到字母a                         |
 | `Da`                | 剪切行文本到字母a                         |
 | `Ca`                | 改写行文本到字母a                         |
-| `rr`                | 替换文本                                  |
-| `<leader>r`         | 全局替换，目前只支持单个文件              |
+| `rr`                | 替换当前光标下的单词或v模式选中的文本     |
+| `<leader>r`         | 单文件内全局替换                          |
 | `rev`               | 翻转当前光标下的单词或使用V模式选择的文本 |
+
+### LeaderF
+
+强大的文件搜索工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>f`         | 搜索当前目录下的文件                      |
+| `<leader>t`         | 搜索当前文件的函数                        |
+
+### ack.vim
+
+快速的文件内容搜索工具。[帮助文档链接](https://beyondgrep.com/documentation/)
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>F`         | 搜索当前目录下的文本                      |
+
+### vim-easymotion
+
+单词跳转工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>w`         | 页面内单词跳转                            |
+| `<leader><leader>w` | 页面内向后单词跳转                        |
+| `<leader><leader>b` | 页面内向前单词跳转                        |
+| `<leader><leader>j` | 页面内向后行跳转                          |
+| `<leader><leader>k` | 页面内向前行跳转                          |
+
+### incsearch.vim
+
+文本搜索增强。可以把搜到的结果高亮显示。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `/`                 | 文件内搜索并高亮                          |
+| `g/`                | 文件内搜索并高亮，但不移动光标            |
+
+### nerdtree
+
+文件树查看。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>f`         | 打开/关闭文件树                           |
+| `o`                 | 打开文件                                  |
+| `m`                 | 打开文件操作菜单                          |
+
+### vim-fugitive
+
+Git集成插件，可以方便的处理git操作。
+
+### vim-surround
+
+括号高效处理工具，可以方便的处理各种配对符号。
+
+符号转义：
+
+| 符号                | 涵义                                      |
+| -------             | -----                                     |
+| `t`                 | 指html的tag对，例如`<html></html>`        |
+| `iw`                | 一个单词                                  |
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `cs<c1><c2>`        | 把符号对c1替换为c2                        |
+| `ds<c1>`            | 删除符号对c1                              |
+| `ysiw<c1>`          | 在光标所在单词两侧加符号对c1              |
+| `v模式下S<c1>`      | 在v模式选中的文本两侧加符号对c1           |
+
+### vim-commentary
+
+代码注释工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
 | `gcc`               | 注释代码                                  |
 | `gcap`              | 注释段落                                  |
+| `v模式下gc`         | 注释代码                                  |
+
+### vim-repeat
+
+扩展vim的repeat(`.`键)，使之可以重复vim-surround等插件的复杂操作。
+
+### vim-cpp-enhanced-highlight
+
+C++高亮工具。
+
+### vim-airline & vim-airline-themes
+
+vim状态栏美化。
+
+### vim-devicons
+
+图标美化插件，vim-airline和NerdTree等中都会用到。
+
+### vim-slash
+
+vim搜索优化(清掉高亮、自动居中)。
+
+### gv.vim
+
+Git commit查看工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>g`         | 显示git仓库提交记录                       |
+| `<leader>G`         | 显示当前文件提交记录                      |
+| `<leader>gg`        | 显示当前文件在某个commit下的完整内容      |
+
+### vim-textobj-user/indent/syntax/function/parameter
+
+将不同对象视为整体，可以方便的进行选中、替换、删除操作。
+
+符号转义：
+
+| 符号                | 涵义                                      |
+| -------             | -----                                     |
+| `w`                 | 一个单词                                  |
+| `f`                 | function，支持花括号包括的函数            |
+| `i`                 | 相同缩放的内容                            |
+| `,`                 | 函数参数                                  |
+
+> 以下以function为例，其它对象同理
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
 | `vif`               | 选中函数内容                              |
 | `dif`               | 删除函数内容                              |
 | `cif`               | 改写函数内容                              |
 | `vaf`               | 选中函数内容（包括函数名 花括号）         |
 | `daf`               | 删除函数内容（包括函数名 花括号）         |
 | `caf`               | 改写函数内容（包括函数名 花括号）         |
-| `fa`                | 查找字母a，然后再按f键查找下一个          |
+
+### echodoc.vim
+
+在代码补全时，显示函数签名。
+
+### vim-smooth-scroll
+
+滑动动画更平滑。
+
+### clever-f.vim
+
+快速字符跳转。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `fa`                | 正向查找字母a，然后再按f键查找下一个      |
+| `Fa`                | 反向查找字母a，然后再按f键查找上一个      |
+
+### indentpython.vim
+
+Python代码缩进辅助。
+
+### closetag.vim
+
+自动完成html标签。
+
+### vim-flake8
+
+使用flake8完成python代码检察。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<F7>`              | 使用flake8检察                            |
+
+### coc.nvim
+
+强大的nvim代码智能感知插件。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `TODO`              | TODO                                      |
+
+### TODO: 杂项
+
+> 未整理完，里面的快捷键可能是失效状态。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>ff`        | 语法错误自动修复(FixIt)                   |
+| `<c-p>`             | 切换到上一个buffer                        |
+| `<c-n>`             | 切换到下一个buffer                        |
+| `<leader>d`         | 删除当前buffer                            |
+| `<leader>D`         | 删除当前buffer外的所有buffer              |
+| `<F5>`              | 异步执行python代码或调试                  |
 | `<leader>e`         | 快速编辑~/.vimrc文件                      |
 | `<leader>s`         | 重新加载~/.vimrc文件                      |
 | `<leader>vp`        | 快速编辑~/.vimrc.custom.plugins文件       |
 | `<leader>vc`        | 快速编辑~/.vimrc.custom.config文件        |
 | `<leader>h`         | 打开vimplus帮助文档                       |
 | `<leader>H`         | 打开当前光标所在单词的vim帮助文档         |
-| `<leader><leader>t` | 生成try-catch代码块                       |
 | `<leader><leader>y` | 复制当前选中到系统剪切板                  |
-| `<leader><leader>i` | 安装插件                                  |
-| `<leader><leader>u` | 更新插件                                  |
-| `<leader><leader>c` | 删除插件                                  |
 
 
 ## 插入模式
