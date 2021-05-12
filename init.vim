@@ -142,8 +142,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " 美化NerdTree的显示
 Plug 'Xuyuanp/nerdtree-git-plugin'  " NerdTree git图标显示
 Plug 'tpope/vim-fugitive'  " Git集成插件
 Plug 'tpope/vim-surround'  " 括号高效处理工具
-Plug 'tpope/vim-commentary'  " 代码注释工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
+Plug 'preservim/nerdcommenter'  " 代码注释工具
 Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
 Plug 'vim-airline/vim-airline'  " vim状态栏美化
 Plug 'vim-airline/vim-airline-themes'  " vim状态栏主题
@@ -163,6 +163,7 @@ Plug 'rhysd/clever-f.vim'  " 快速字符跳转
 Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
 Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
+Plug 'chxuan/vim-buffer'  " Buffer操作工具
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 
 " 加载自定义插件
@@ -269,6 +270,18 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Unknown"   : "?"
             \ }
 
+" nerdcommenter
+let g:NERDCreateDefaultMappings = 0
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+let g:NERDCommentEmptyLines = 0
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDToggleCheckAllLines = 1
+nnoremap gcc :call NERDComment(0, "toggle")<C-m>
+vnoremap gc :call NERDComment(0, "toggle")<C-m>
+
 " airline
 let g:airline_theme="onedark"
 let g:airline_powerline_fonts = 1
@@ -301,6 +314,12 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " Termdebug
 let g:termdebug_wide = 163
 tnoremap <ESC><ESC> <C-\><C-N>
+
+" vim-buffer
+nnoremap <leader><tab> :NextBuffer<cr>
+nnoremap <leader><S-tab> :PreviousBuffer<cr>
+nnoremap <leader>x :CloseBuffer<cr>
+nnoremap <leader>X :BufOnly<cr>
 
 " coc.nvim
 " ======================================> coc.vim setting start

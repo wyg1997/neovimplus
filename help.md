@@ -93,7 +93,7 @@ Git集成插件，可以方便的处理git操作。
 | `ysiw<c1>`          | 在光标所在单词两侧加符号对c1              |
 | `v模式下S<c1>`      | 在v模式选中的文本两侧加符号对c1           |
 
-### vim-commentary
+### nerdcommenter
 
 代码注释工具。
 
@@ -190,6 +190,17 @@ Python代码缩进辅助。
 | -------             | -----                                     |
 | `<F7>`              | 使用flake8检察                            |
 
+### vim-buffer
+
+Buffer操作工具。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader><tab>`     | 切换到下一个buffer                        |
+| `<leader><S-tab>`   | 切换到上一个buffer                        |
+| `<leader>x`         | 删除当前buffer                            |
+| `<leader>X`         | 删除当前buffer外的所有buffer              |
+
 ### coc.nvim
 
 强大的nvim代码智能感知插件。
@@ -209,16 +220,12 @@ Python代码缩进辅助。
 | `:Format`           | Format代码                                |
 | `:OR`               | 组织import                                |
 
-### TODO: 杂项
+### 杂项
 
 > 未整理完，里面的快捷键可能是失效状态。
 
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
-| `<c-p>`             | 切换到上一个buffer                        |
-| `<c-n>`             | 切换到下一个buffer                        |
-| `<leader>d`         | 删除当前buffer                            |
-| `<leader>D`         | 删除当前buffer外的所有buffer              |
 | `<F5>`              | 异步执行python代码或调试                  |
 | `<leader>h`         | 打开vimplus帮助文档                       |
 | `<leader>H`         | 打开当前光标所在单词的vim帮助文档         |
