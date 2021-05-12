@@ -196,7 +196,18 @@ Python代码缩进辅助。
 
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
-| `TODO`              | TODO                                      |
+| `<tab>`             | 触发补全动作                              |
+| `<cr>(回车)`        | 确认补全                                  |
+| `[g`                | 跳转到上一处错误处                        |
+| `]g`                | 跳转到下一处错误处                        |
+| `<leader>d`         | 跳转到定义                                |
+| `<leader>r`         | 显示所有引用                              |
+| `K`                 | 显示文档                                  |
+| `<leader>rn`        | 重命名当前单词(所有文件)                  |
+| `<leader>a`         | 打开CodeAction菜单                        |
+| `<leader>qf`        | 使用QuickFix                              |
+| `:Format`           | Format代码                                |
+| `:OR`               | 组织import                                |
 
 ### TODO: 杂项
 
@@ -204,19 +215,15 @@ Python代码缩进辅助。
 
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
-| `<leader>ff`        | 语法错误自动修复(FixIt)                   |
 | `<c-p>`             | 切换到上一个buffer                        |
 | `<c-n>`             | 切换到下一个buffer                        |
 | `<leader>d`         | 删除当前buffer                            |
 | `<leader>D`         | 删除当前buffer外的所有buffer              |
 | `<F5>`              | 异步执行python代码或调试                  |
-| `<leader>e`         | 快速编辑~/.vimrc文件                      |
-| `<leader>s`         | 重新加载~/.vimrc文件                      |
-| `<leader>vp`        | 快速编辑~/.vimrc.custom.plugins文件       |
-| `<leader>vc`        | 快速编辑~/.vimrc.custom.config文件        |
 | `<leader>h`         | 打开vimplus帮助文档                       |
 | `<leader>H`         | 打开当前光标所在单词的vim帮助文档         |
 | `<leader><leader>y` | 复制当前选中到系统剪切板                  |
+| `<leader><leader>p` | 将系统剪切板的内容粘贴                    |
 
 
 ## 插入模式
@@ -230,7 +237,6 @@ Python代码缩进辅助。
 | `o`     | 在下一行插入新行并进入插入模式 |
 | `O`     | 在上一行插入新行并进入插入模式 |
 | `gi`    | 进入到上一次插入模式的位置     |
-| `<esc>` | 退出插入模式                   |
 
 
 ## 缓存操作
