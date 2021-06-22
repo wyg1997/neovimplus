@@ -216,7 +216,7 @@ nnoremap <leader>rr :ReplaceTo<space>
 nnoremap <leader>f :LeaderfFile .<cr>
 nnoremap <leader>t :LeaderfFunction!<cr>
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh'],
+            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh', 'log'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_UseCache = 0
