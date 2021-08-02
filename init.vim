@@ -220,7 +220,7 @@ let g:Lf_WildIgnore = {
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_UseCache = 0
-let g:Lf_UseVersionControlTool = 0
+let g:Lf_UseVersionControlTool = 1
 let g:Lf_NormalMap = {
 	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
 	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
@@ -280,8 +280,8 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 0
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
-nnoremap gcc :call NERDComment(0, "toggle")<C-m>
-vnoremap gc :call NERDComment(0, "toggle")<C-m>
+nnoremap gcc :call nerdcommenter#Comment(0, "toggle")<C-m>
+vnoremap gc :call nerdcommenter#Comment(0, "toggle")<C-m>
 
 " airline
 let g:airline_theme="onedark"
