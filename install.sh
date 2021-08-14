@@ -92,6 +92,12 @@ function install_prepare_software_on_ubuntu()
     sudo n stable
 }
 
+# 安装macOS软件
+function install_prepare_software_on_mac()
+{
+    brew install neovim gcc cmake ctags-exuberant ack node
+}
+
 # 安装ubuntu系必备软件
 function install_prepare_software_on_ubuntu_like()
 {
@@ -182,14 +188,22 @@ function install_vim_plugin()
 function begin_install_vimplus()
 {
     copy_files
-    install_fonts_on_linux
     install_vim_plugin
+}
+
+# 在macOS上安装vimplus
+function install_vimplus_on_mac()
+{
+    install_prepare_software_on_mac
+    install_fonts_on_mac
+    begin_install_vimplus
 }
 
 # 在ubuntu上安装vimplus
 function install_vimplus_on_ubuntu()
 {
     install_prepare_software_on_ubuntu
+    install_fonts_on_linux
     begin_install_vimplus
 }
 
@@ -198,6 +212,7 @@ function install_vimplus_on_ubuntu_like()
 {
     backup_vimrc_and_vim
     install_prepare_software_on_ubuntu_like
+    install_fonts_on_linux
     begin_install_vimplus
 }
 
@@ -205,6 +220,7 @@ function install_vimplus_on_ubuntu_like()
 function install_vimplus_on_archlinux()
 {
     install_prepare_software_on_archlinux
+    install_fonts_on_linux
     begin_install_vimplus
 }
 
@@ -270,8 +286,7 @@ function main()
     echo "Platform type: "${type}
 
     if [ ${type} == "Darwin" ]; then
-        # install_vimplus_on_mac
-        not_implement
+        install_vimplus_on_mac
     elif [ ${type} == "Linux" ]; then
         tp=$(uname -a)
         if [[ $tp =~ "Android" ]]; then
