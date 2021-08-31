@@ -80,8 +80,6 @@ set ignorecase          " 搜索时大小写不敏感
 " 缓存设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set hidden              " 允许隐藏未保存的buffer
-set nobackup            " 设置不备份
-set nowritebackup       " 不生成备份文件
 set noswapfile          " 禁止生成临时文件
 set autoread            " 文件在vim之外修改过，自动重新读入
 set autowrite           " 设置自动保存
@@ -324,8 +322,31 @@ nnoremap <leader>X :BufOnly<cr>
 
 " coc.nvim
 " ======================================> coc.vim setting start
+let g:coc_global_extensions = [
+            \ "coc-pyright",
+            \ "coc-jedi",
+            \ "coc-clangd",
+            \ "coc-cmake",
+            \ "coc-git",
+            \ "coc-gitignore",
+            \ "coc-highlight",
+            \ "coc-json",
+            \ "coc-sh",
+            \ "coc-snippets",
+            \ "coc-tabnine",
+            \ "coc-actions",
+            \ "coc-docker",
+            \ "coc-vimlsp",
+            \ "coc-yaml",
+            \ "coc-syntax",
+            \ "coc-pairs",
+            \ "coc-xml",
+            \ "coc-markdownlint",
+            \ "coc-diagnostic"
+            \]
+
 " You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
+set updatetime=100
  
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
@@ -346,6 +367,9 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
  
+" Use <C-l> to trigger completion.
+inoremap <silent><expr> <C-l> coc#refresh()
+
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"

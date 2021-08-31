@@ -1,0 +1,198 @@
+{
+    "coc.preferences.extensionUpdateCheck": "weekly",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "json",
+        "python",
+        "c",
+        "cpp",
+        "yaml",
+        "markdown"
+    ],
+    "coc.preferences.semanticTokensHighlights": false,
+    "coc.preferences.enableFloatHighlight": true,
+    "coc.preferences.snippetStatusText": "Ⓢ ",
+    "coc.preferences.messageLevel": "error",
+    "coc.source.around.firstMatch": false,
+    "coc.source.buffer.firstMatch": false,
+    "coc.source.syntax.firstMatch": false,
+    "suggest.detailMaxLength": 60,
+    "suggest.noselect": true,
+    "suggest.enablePreselect": false,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "always",
+    "suggest.timeout": 5000,
+    "suggest.enablePreview": true,
+    "suggest.floatEnable": true,
+    "suggest.detailField": "preview",
+    "suggest.snippetIndicator": "",
+    "suggest.triggerCompletionWait": 100,
+    "suggest.echodocSupport": true,
+    "suggest.completionItemKindLabels": {
+        "class": "\uf0e8",
+        "color": "\ue22b",
+        "constant": "\uf8fe",
+        "default": "\uf29c",
+        "enum": "\uf435",
+        "enumMember": "\uf02b",
+        "event": "\ufacd",
+        "field": "\uf93d",
+        "file": "\uf723",
+        "folder": "\uf115",
+        "function": "\u0192",
+        "interface": "\uf417",
+        "keyword": "\uf1de",
+        "method": "\uf6a6",
+        "module": "\uf40d",
+        "operator": "\uf915",
+        "property": "\ue624",
+        "reference": "\ufa46",
+        "snippet": "\ue60b",
+        "struct": "\ufb44",
+        "text": "\ue612",
+        "typeParameter": "\uf728",
+        "unit": "\uf475",
+        "value": "\uf89f",
+        "variable": "\ue71b"
+    },
+    "diagnostic.errorSign": "\uf467",
+    "diagnostic.warningSign": "\uf071",
+    "diagnostic.infoSign": "\uf129",
+    "diagnostic.hintSign": "\uf864",
+    "diagnostic.displayByAle": false,
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
+    "list.previewHighlightGroup": "Statement",
+    "list.nextKeymap": "<C-j>",
+    "list.previousKeymap": "<C-k>",
+    "snippets.ultisnips.directories": [
+        "$HOME/.config/nvim/Ultisnips/",
+        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
+    ],
+    "yaml.format.enable": true,
+    "signature.target": "float",
+    "python.autoComplete.addBrackets": true,
+    "json.format.enable": true,
+    "coc-actions.hideCursor": false,
+    "coc-actions.showActionKind": true,
+    "diagnostic-languageserver.filetypes": {
+        "vim": "vint",
+        "email": "languagetool",
+        "markdown": [
+            "write-good",
+            "markdownlint"
+        ],
+        "sh": "shellcheck",
+        "elixir": [
+            "mix_credo",
+            "mix_credo_compile"
+        ],
+        "eelixir": [
+            "mix_credo",
+            "mix_credo_compile"
+        ]
+    },
+    "diagnostic-languageserver.formatFiletypes": {
+        "elixir": "mix_format",
+        "eelixir": "mix_format",
+        "python": [
+            "black",
+            "isort"
+        ]
+    },
+    "languageserver": {
+        "clangd": {
+            "command": "clangd",
+            "rootPatterns": [
+                "compile_flags.txt",
+                "compile_commands.json"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp",
+                "c++",
+                "objc",
+                "objcpp"
+            ]
+        },
+        "python": {
+            "command": "python",
+            "args": [
+                "-mpyls",
+                "-vv",
+                "--log-file",
+                "/tmp/lsp_python.log"
+            ],
+            "trace.server": "verbose",
+            "filetypes": [
+                "python"
+            ],
+            "settings": {
+                "pyls": {
+                    "enable": true,
+                    "trace": {
+                        "server": "verbose"
+                    },
+                    "commandPath": "",
+                    "configurationSources": [
+                        "pycodestyle"
+                    ],
+                    "plugins": {
+                        "jedi_completion": {
+                            "enabled": true
+                        },
+                        "jedi_hover": {
+                            "enabled": true
+                        },
+                        "jedi_references": {
+                            "enabled": true
+                        },
+                        "jedi_signature_help": {
+                            "enabled": true
+                        },
+                        "jedi_symbols": {
+                            "enabled": true,
+                            "all_scopes": true
+                        },
+                        "mccabe": {
+                            "enabled": true,
+                            "threshold": 15
+                        },
+                        "preload": {
+                            "enabled": true
+                        },
+                        "pycodestyle": {
+                            "enabled": true
+                        },
+                        "pydocstyle": {
+                            "enabled": false,
+                            "match": "(?!test_).*\\.py",
+                            "matchDir": "[^\\.].*"
+                        },
+                        "pyflakes": {
+                            "enabled": true
+                        },
+                        "rope_completion": {
+                            "enabled": true
+                        },
+                        "yapf": {
+                            "enabled": true
+                        }
+                    }
+                }
+            }
+        },
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ]
+        }
+    }
+}

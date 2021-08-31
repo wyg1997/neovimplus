@@ -119,6 +119,9 @@ function copy_files()
     rm -rf ${NEOVIM_CONFIG_DIR}/init.vim
     ln -s ${PWD}/init.vim ${NEOVIM_CONFIG_DIR}
 
+    rm -rf ${NEOVIM_CONFIG_DIR}/coc-settings.json
+    ln -s ${PWD}/coc-settings.json ${NEOVIM_CONFIG_DIR}
+
     rm -rf ${NEOVIM_CONFIG_DIR}/init.vim.custom.plugins
     ln -s ${PWD}/init.vim.custom.plugins ${NEOVIM_CONFIG_DIR}
 
@@ -153,41 +156,19 @@ function install_fonts_on_linux()
     fc-cache -vf ~/.local/share/fonts
 }
 
-# 安装coc.nvim补全支持
-function install_coc_support()
-{
-    python3 -m pip install neovim jedi
-
-    nvim -c "CocInstall -sync coc-clangd"       -c "qa"  # -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-    nvim -c "CocInstall -sync coc-cmake"        -c "qa"
-    nvim -c "CocInstall -sync coc-git"          -c "qa"
-    nvim -c "CocInstall -sync coc-highlight"    -c "qa"
-    nvim -c "CocInstall -sync coc-jedi"         -c "qa"
-    nvim -c "CocInstall -sync coc-json"         -c "qa"
-    nvim -c "CocInstall -sync coc-python"       -c "qa"
-    nvim -c "CocInstall -sync coc-sh"           -c "qa"
-    nvim -c "CocInstall -sync coc-snippets"     -c "qa"
-    nvim -c "CocInstall -sync coc-vimlsp"       -c "qa"
-    nvim -c "CocInstall -sync coc-yaml"         -c "qa"
-    nvim -c "CocInstall -sync coc-syntax"       -c "qa"
-    nvim -c "CocInstall -sync coc-pairs"        -c "qa"
-    nvim -c "CocInstall -sync coc-markdownlint" -c "qa"
-}
-
 # 安装vim插件
 function install_vim_plugin()
 {
     rm -rf ~/.vim/plugged
     mkdir -p ~/.vim/plugged
     nvim -c "PlugInstall" -c "q" -c "q"
-
-    install_coc_support
 }
 
 # 开始安装vimplus
 function begin_install_vimplus()
 {
     copy_files
+    python3 -m pip install neovim jedi
     install_vim_plugin
 }
 
