@@ -342,7 +342,8 @@ let g:coc_global_extensions = [
             \ "coc-pairs",
             \ "coc-xml",
             \ "coc-markdownlint",
-            \ "coc-diagnostic"
+            \ "coc-diagnostic",
+            \ "coc-translator"
             \]
 
 " You will have bad experience for diagnostic messages when it's default 4000.

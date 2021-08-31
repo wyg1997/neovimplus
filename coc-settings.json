@@ -67,13 +67,8 @@
     "list.previewHighlightGroup": "Statement",
     "list.nextKeymap": "<C-j>",
     "list.previousKeymap": "<C-k>",
-    "snippets.ultisnips.directories": [
-        "$HOME/.config/nvim/Ultisnips/",
-        "$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
-    ],
     "yaml.format.enable": true,
     "signature.target": "float",
-    "python.autoComplete.addBrackets": true,
     "json.format.enable": true,
     "coc-actions.hideCursor": false,
     "coc-actions.showActionKind": true,
