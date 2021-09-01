@@ -148,6 +148,7 @@ Plug 'vim-airline/vim-airline-themes'  " vim状态栏主题
 Plug 'ryanoasis/vim-devicons'  " 图标美化
 Plug 'junegunn/vim-slash'  " vim搜索优化
 Plug 'junegunn/gv.vim'  " git commit查看工具
+Plug 'RRethy/vim-illuminate'  " 相同单词高亮
 " 以下5个插件将不同对象视为整体
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-syntax'
@@ -300,6 +301,12 @@ noremap <plug>(slash-after) zz
 nnoremap <leader>g :GV<cr>
 nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
+
+" vim-illuminate
+augroup illuminate_augroup
+    autocmd!
+    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+augroup END
 
 " echodoc.vim
 let g:echodoc_enable_at_startup = 1
