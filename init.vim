@@ -305,7 +305,7 @@ nnoremap <leader>gg :GV?<cr>
 " vim-illuminate
 augroup illuminate_augroup
     autocmd!
-    autocmd VimEnter * hi illuminatedWord cterm=underline gui=underline
+    autocmd VimEnter * hi link illuminatedWord VisualNOS
 augroup END
 
 " echodoc.vim
