@@ -54,6 +54,10 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
+    "translator.engines": [
+        "youdao",
+        "haici"
+    ],
     "diagnostic.errorSign": "\uf467",
     "diagnostic.warningSign": "\uf071",
     "diagnostic.infoSign": "\uf129",
