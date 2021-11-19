@@ -1,0 +1,42 @@
+{
+    "configurations": {
+        "cpp:launch": {
+            "adapter": "vscode-cpptools",
+            "configuration": {
+                "name": "cpp:launch",
+                "stopAtEntry": true,
+                "type": "cppdbg",
+                "request": "launch",
+                "program": "${workspaceRoot}/a.out",
+                "args": [],
+                "cwd": "${workspaceRoot}",
+                "environment": [],
+                "externalConsole": true,
+                "MIMode": "gdb",
+                "breakpointers": {
+                    "exception": {
+                        "cpp_throw": "Y",
+                        "cpp_catch": "N"
+                    }
+                }
+            }
+        },
+        "cpp:attach": {
+            "adapter": "vscode-cpptools",
+            "configuration": {
+                "name": "cpp:attach",
+                "stopAtEntry": true,
+                "type": "cppdbg",
+                "request": "attach",
+                "program": "${workspaceRoot}/a.out",
+                "MIMode": "gdb",
+                "breakpointers": {
+                    "exception": {
+                        "cpp_throw": "Y",
+                        "cpp_catch": "N"
+                    }
+                }
+            }
+        }
+    }
+}

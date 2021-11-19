@@ -164,6 +164,7 @@ Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
 Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
 Plug 'chxuan/vim-buffer'  " Buffer操作工具
+Plug 'puremourning/vimspector'  " 代码 Debug 工具
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 
 " 加载自定义插件
@@ -450,6 +451,9 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " ======================================> coc.vim setting end
+
+" puremourning/vimspector
+let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 
 " 加载自定义配置
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.config'))
