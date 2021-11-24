@@ -166,6 +166,7 @@ Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
 Plug 'chxuan/vim-buffer'  " Buffer操作工具
 Plug 'puremourning/vimspector'  " 代码 Debug 工具
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
+Plug 'ojroques/vim-oscyank'  " 复制内容到本地剪切板
 
 " 加载自定义插件
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
@@ -454,6 +455,9 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " puremourning/vimspector
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" ojroques/vim-oscyank
+vnoremap <leader>c :OSCYank<CR>
 
 " 加载自定义配置
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.config'))
