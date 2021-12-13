@@ -32,9 +32,9 @@ Leader Key: `,`
 | `<leader>f`         | 搜索当前目录下的文件                      |
 | `<leader>t`         | 搜索当前文件的函数                        |
 
-### ack.vim
+### fzf
 
-快速的文件内容搜索工具。[帮助文档链接](https://beyondgrep.com/documentation/)
+模糊搜索神器。
 
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |

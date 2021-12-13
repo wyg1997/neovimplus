@@ -132,7 +132,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'derekwyatt/vim-fswitch'  " .h和.c/.cc/.cpp文件切换
 Plug 'chxuan/vim-edit'  " 方便的文本编辑工具
 Plug 'Yggdroot/LeaderF'  " 强大的文件搜索工具
-Plug 'mileszs/ack.vim'  " 快速的文件内容搜索工具
+Plug 'junegunn/fzf', { 'dir': '~/.neovimplus/.fzf', 'do': './install --all' },
+Plug 'junegunn/fzf.vim',
 Plug 'easymotion/vim-easymotion'  " 单词跳转
 Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
 Plug 'jiangmiao/auto-pairs'  " 括号匹配工具
@@ -232,8 +233,8 @@ let g:Lf_NormalMap = {
 	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
 	\ }
 
-" ack
-nnoremap <leader>F :Ack!<space>
+" fzf
+nnoremap <leader>F :Rg<space>
 
 " vim-easymotion
 let g:EasyMotion_smartcase = 1
