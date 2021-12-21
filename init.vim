@@ -235,6 +235,14 @@ let g:Lf_NormalMap = {
 
 " fzf
 nnoremap <leader>F :Rg<space>
+let g:fzf_buffers_jump = 1
+let g:fzf_layout = { 'down': '~40%' }
+let $FZF_DEFAULT_OPTS="--ansi --layout reverse"
+" Rg command with preview window
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 " vim-easymotion
 let g:EasyMotion_smartcase = 1
