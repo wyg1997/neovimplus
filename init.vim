@@ -460,6 +460,11 @@ command! -nargs=0 Format :call CocAction('format')
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" coc-translator mapping
+" popup
+nmap <Leader>T <Plug>(coc-translator-p)
+vmap <Leader>T <Plug>(coc-translator-pv)
+
 " ======================================> coc.vim setting end
 
 " puremourning/vimspector

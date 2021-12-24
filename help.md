@@ -220,6 +220,7 @@ Buffer操作工具。
 | `<leader>qf`        | 使用QuickFix                              |
 | `:Format`           | Format代码                                |
 | `:OR`               | 组织import                                |
+| `<leader>T`         | popup 方式翻译文本                        |
 
 ### vimspector
 
