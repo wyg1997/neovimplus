@@ -237,13 +237,21 @@ vim Debug 工具。 使用 VISUAL STUDIO 键位。
 | `<F11>`             | 单步进入                                  |
 | `<shift-F11>`       | 跳出函数                                  |
 
-### vimspector
+### vim-oscyank
 
 使支持OSC52指令的终端支持复制内容到本地剪切板。
 
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
 | `<leader>c`         | 复制选中内容到本地剪切板                  |
+
+### gitlinker.nvim
+
+生成代码对应的 github 链接。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>gy`        | norm/visual 模式下生成 github 链接        |
 
 ### 杂项
 
