@@ -167,8 +167,8 @@ Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
 Plug 'chxuan/vim-buffer'  " Buffer操作工具
 Plug 'puremourning/vimspector'  " 代码 Debug 工具
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
-Plug 'ojroques/vim-oscyank'  " 复制内容到本地剪切板
-Plug 'github/copilot.vim'  "  强大的AI代码补全
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切板
+Plug 'github/copilot.vim', {'branch': 'release'}  "  强大的AI代码补全
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
 Plug 'ruifm/gitlinker.nvim'  " 生成代码对应的 github 链接
 
