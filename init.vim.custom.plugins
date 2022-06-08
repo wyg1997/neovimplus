@@ -18,5 +18,4 @@
 " 卸载/禁用 init.vim 里的默认插件
 " UnPlug 'chxuan/prepare-code'
 
-Plug 'skywind3000/asyncrun.vim'
 
