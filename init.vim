@@ -182,9 +182,6 @@ nnoremap <c-l> <c-w>l
 set clipboard+=unnamed
 vmap <leader><leader>y "+y
 
-" 将系统剪切板内容粘贴到vim
-nnoremap <leader><leader>p "+p
-
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
 
@@ -361,6 +358,12 @@ set shortmess+=c
  
 " always show signcolumns
 set signcolumn=yes
+
+" Link CocMenuSel to PmenuSel temporarily for new version of coc.nvim
+" see: https://github.com/neoclide/coc.nvim/issues/3980
+" and https://github.com/joshdick/onedark.vim/issues/313
+" for detail
+highlight! link CocMenuSel PmenuSel
  
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
