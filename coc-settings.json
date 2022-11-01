@@ -76,7 +76,7 @@
     "json.format.enable": true,
     "coc-actions.hideCursor": false,
     "coc-actions.showActionKind": true,
-    "jedi.executable.command": "~/.config/coc/extensions/node_modules/coc-jedi/.venv/bin/jedi-language-server",
+    "jedi.executable.command": "jedi-language-server",
     "diagnostic-languageserver.filetypes": {
         "vim": "vint",
         "email": "languagetool",
