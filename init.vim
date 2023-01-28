@@ -299,6 +299,8 @@ nnoremap <leader>G :GV!<cr>
 nnoremap <leader>gg :GV?<cr>
 
 " vim-illuminate
+let g:Illuminate_useDeprecated = 1
+let g:Illuminate_delay = 100
 augroup illuminate_augroup
     autocmd!
     autocmd VimEnter * hi link illuminatedWord VisualNOS
