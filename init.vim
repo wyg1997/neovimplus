@@ -178,6 +178,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" jump in popup window
+nnoremap <leader>pp :call coc#float#jump()<cr>
+
 " 复制当前选中到系统剪切板
 set clipboard+=unnamed
 vmap <leader><leader>y "+y
@@ -337,8 +340,6 @@ let g:coc_global_extensions = [
             \ "coc-highlight",
             \ "coc-json",
             \ "coc-sh",
-            \ "coc-snippets",
-            \ "coc-tabnine",
             \ "coc-actions",
             \ "coc-docker",
             \ "coc-vimlsp",

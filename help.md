@@ -302,6 +302,7 @@ vim Debug 工具。 使用 VISUAL STUDIO 键位。
 | `<c-w>c`          | 关闭当前窗口           |
 | `<c-w>o`          | 关闭其他窗口           |
 | `:only`           | 关闭其他窗口           |
+| `<leader>pp`      | 进入 popup window      |
 
 
 ## 光标移动
