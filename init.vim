@@ -439,11 +439,17 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>qf  <Plug>(coc-fix-current)
  
 " Create mappings for function text object, requires document symbols feature of languageserver.
+" NOTE: textobj plugin implement it, see help.md for detail.
 " xmap if <Plug>(coc-funcobj-i)
 " xmap af <Plug>(coc-funcobj-a)
 " omap if <Plug>(coc-funcobj-i)
 " omap af <Plug>(coc-funcobj-a)
  
+" Use CTRL-S for selections ranges
+" Requires 'textDocument/selectionRange' support of language server
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
  
