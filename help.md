@@ -236,6 +236,7 @@ vim Debug 工具。 使用 VISUAL STUDIO 键位。
 | `<F10>`             | 单步跳过                                  |
 | `<F11>`             | 单步进入                                  |
 | `<shift-F11>`       | 跳出函数                                  |
+| `<leader>di`        | 查看当前光标下的变量                      |
 
 ### vim-oscyank
 

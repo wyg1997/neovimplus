@@ -468,6 +468,10 @@ vmap <Leader>T <Plug>(coc-translator-pv)
 
 " puremourning/vimspector
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+" for normal mode - the word under the cursor
+nmap <Leader>di <Plug>VimspectorBalloonEval
+" for visual mode, the visually selected text
+xmap <Leader>di <Plug>VimspectorBalloonEval
 
 " ojroques/vim-oscyank
 vnoremap <leader>c :OSCYank<CR>
