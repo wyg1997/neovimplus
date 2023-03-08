@@ -474,7 +474,8 @@ nmap <Leader>di <Plug>VimspectorBalloonEval
 xmap <Leader>di <Plug>VimspectorBalloonEval
 
 " ojroques/vim-oscyank
-vnoremap <leader>c :OSCYank<CR>
+nmap <leader>c <Plug>OSCYankOperator
+vmap <leader>c <Plug>OSCYankVisual
 
 " ruifm/gitlinker.nvim
 lua << EOF
