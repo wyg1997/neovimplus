@@ -13,7 +13,7 @@ Simple and beautiful editor for neovim programmer.
 ```shell
 git clone https://github.com/wyg1997/neovimplus.git ~/.neovimplus
 cd ~/.neovimplus
-./install
+./install.sh
 ```
 
 ## 自定义配置
