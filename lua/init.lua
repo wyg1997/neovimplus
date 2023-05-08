@@ -20,9 +20,9 @@ end
 
 local function load_lua_files(dir, recursion)
   local script_path = get_current_script_path()
-  local full_dir = script_path .. '/' .. dir
+  local full_dir = vim.loop.fs_realpath(script_path .. '/' .. dir)
 
-  for _, file in ipairs(vim.fn.readdir(dir)) do
+  for _, file in ipairs(vim.fn.readdir(full_dir)) do
     local full_path = full_dir .. '/' .. file
     if vim.fn.isdirectory(full_path) == 0 and file:match('%.lua$') then
       require(dir .. '/' .. string.gsub(file, '%.lua$', ''))
