@@ -4,7 +4,8 @@ Simple and beautiful editor for neovim programmer.
 
 ## 简介
 
-本仓库有很大一部分是借鉴自 [chxuan/vimplus](https://github.com/chxuan/vimplus) ，之前我也是这个仓库的忠实使用者，但在重度 vim 开发过程中越来越觉得 [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) 的不方便，这才转用 neovim 和 coc.nvim 了。
+- 本仓库有很大一部分是借鉴自 [chxuan/vimplus](https://github.com/chxuan/vimplus) ，之前我也是这个仓库的忠实使用者，但在重度 vim 开发过程中越来越觉得 [YouCompleteMe](https://github.com/ycm-core/YouCompleteMe) 的不方便，这才转用 neovim 和 coc.nvim 了。
+- 最近开始学习并逐渐使用lua来做插件配置，主要是参考学习自 [aMonst/nvimrc-tutorial](https://github.com/aMonst/nvimrc-tutorial/tree/main)
 
 初衷和原作者一样，希望为 vim 程序员提供一个安装方便、使用体验很棒的编辑器。
 
