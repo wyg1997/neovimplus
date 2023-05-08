@@ -201,6 +201,15 @@ Buffer操作工具。
 | `<leader>x`         | 删除当前buffer                            |
 | `<leader>X`         | 删除当前buffer外的所有buffer              |
 
+### bufferline
+
+Buffer栏美化。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>number`    | 切换到几号buffer                          |
+| `<leader>\``        | pin这个buffer                             |
+
 ### coc.nvim
 
 强大的nvim代码智能感知插件。
