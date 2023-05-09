@@ -124,7 +124,6 @@ Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
 Plug 'jiangmiao/auto-pairs'  " 括号匹配工具
 Plug 'kyazdani42/nvim-tree.lua'  " 文件树
 Plug 'nvim-lualine/lualine.nvim'  " 状态栏美化
-Plug 'glepnir/dashboard-nvim'
 Plug 'tpope/vim-fugitive'  " Git集成插件
 Plug 'tpope/vim-surround'  " 括号高效处理工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
