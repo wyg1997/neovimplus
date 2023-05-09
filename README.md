@@ -17,6 +17,8 @@ cd ~/.neovimplus
 ./install.sh
 ```
 
+> NOTE: 字体个人使用: [MesloNerdFont](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/M)，可以兼顾p10k和插件里的一些图标显示。
+
 ## 自定义配置
 
 - `~/.neovimplus/init.vim`：默认配置
