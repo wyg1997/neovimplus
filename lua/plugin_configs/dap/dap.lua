@@ -22,19 +22,19 @@ vim.api.nvim_set_hl(0, 'DapStopped', dap_breakpoint_color.stopped)
 
 local dap_breakpoint = {
     error = {
-        text = "",
+        text = "⛔︎",
         texthl = "DapBreakpoint",
         linehl = "DapBreakpoint",
         numhl = "DapBreakpoint",
     },
     condition = {
-        text = 'ﳁ',
+        text = '☊',
         texthl = 'DapBreakpoint',
         linehl = 'DapBreakpoint',
         numhl = 'DapBreakpoint',
     },
     rejected = {
-        text = "",
+        text = "❌",
         texthl = "DapBreakpint",
         linehl = "DapBreakpoint",
         numhl = "DapBreakpoint",
