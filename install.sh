@@ -137,6 +137,9 @@ function copy_files()
 
     rm -rf ${NEOVIM_DIR}/autoload
     ln -s ${PWD}/autoload ${NEOVIM_DIR}
+
+    rm -rf ${NEOVIM_DIR}/lua
+    ln -s ${PWD}/lua ${NEOVIM_DIR}
 }
 
 # 安装mac平台字体

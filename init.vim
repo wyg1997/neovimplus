@@ -130,7 +130,7 @@ Plug 'tpope/vim-surround'  " 括号高效处理工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
 Plug 'preservim/nerdcommenter'  " 代码注释工具
 Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
-Plug 'nvim-tree/nvim-web-devicons'  " 图标优化
+Plug 'ryanoasis/vim-devicons'  " 图标优化
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }  " buffer栏显示
 Plug 'junegunn/vim-slash'  " vim搜索优化
 Plug 'junegunn/gv.vim'  " git commit查看工具
