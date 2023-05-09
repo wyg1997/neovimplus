@@ -137,13 +137,16 @@ function copy_files()
 
     rm -rf ${NEOVIM_DIR}/autoload
     ln -s ${PWD}/autoload ${NEOVIM_DIR}
+
+    rm -rf ${NEOVIM_DIR}/lua
+    ln -s ${PWD}/lua ${NEOVIM_DIR}
 }
 
 # 安装mac平台字体
 function install_fonts_on_mac()
 {
     rm -rf ~/Library/Fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
-    cp ./fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/Library/Fonts
+    cp ./fonts/* ~/Library/Fonts
 }
 
 # 安装linux平台字体
@@ -151,7 +154,7 @@ function install_fonts_on_linux()
 {
     mkdir -p ~/.local/share/fonts
     rm -rf ~/.local/share/fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf
-    cp ./fonts/Droid\ Sans\ Mono\ Nerd\ Font\ Complete.otf ~/.local/share/fonts
+    cp ./fonts/* ~/.local/share/fonts
 
     fc-cache -vf ~/.local/share/fonts
 }

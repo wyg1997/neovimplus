@@ -201,6 +201,15 @@ Buffer操作工具。
 | `<leader>x`         | 删除当前buffer                            |
 | `<leader>X`         | 删除当前buffer外的所有buffer              |
 
+### bufferline
+
+Buffer栏美化。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<leader>number`    | 切换到几号buffer                          |
+| `<leader>\``        | pin这个buffer                             |
+
 ### coc.nvim
 
 强大的nvim代码智能感知插件。
@@ -222,22 +231,6 @@ Buffer操作工具。
 | `:OR`               | 组织import                                |
 | `<leader>T`         | popup 方式翻译文本                        |
 
-### vimspector
-
-vim Debug 工具。 使用 VISUAL STUDIO 键位。
-
-| 快捷键              | 说明                                      |
-| -------             | -----                                     |
-| `<F5>`              | 启动调试/继续                             |
-| `<shift-F5>`        | 停止调试                                  |
-| `<c-shift-F5>`      | 使用相同的配置重新启动调试                |
-| `<F9>`              | 切换当前行上的断点                        |
-| `<shift-F9>`        | 为游标下的表达式添加函数断点              |
-| `<F10>`             | 单步跳过                                  |
-| `<F11>`             | 单步进入                                  |
-| `<shift-F11>`       | 跳出函数                                  |
-| `<leader>di`        | 查看当前光标下的变量                      |
-
 ### vim-oscyank
 
 使支持OSC52指令的终端支持复制内容到本地剪切板。
@@ -253,6 +246,17 @@ vim Debug 工具。 使用 VISUAL STUDIO 键位。
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
 | `<leader>gy`        | norm/visual 模式下生成 github 链接        |
+
+### dap
+
+neovim debug插件。
+
+| 快捷键              | 说明                                      |
+| -------             | -----                                     |
+| `<F9>`              | 添加断点                                  |
+| `<F10>`             | 单步跳过                                  |
+| `<F11>`             | 单步进入                                  |
+| `<F12>`             | 单步退出                                  |
 
 ### 杂项
 

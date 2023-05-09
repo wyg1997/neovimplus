@@ -122,17 +122,15 @@ Plug 'junegunn/fzf.vim'
 Plug 'easymotion/vim-easymotion'  " 单词跳转
 Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
 Plug 'jiangmiao/auto-pairs'  " 括号匹配工具
-Plug 'scrooloose/nerdtree'  " 文件树查看
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'  " 美化NerdTree的显示
-Plug 'Xuyuanp/nerdtree-git-plugin'  " NerdTree git图标显示
+Plug 'kyazdani42/nvim-tree.lua'  " 文件树
+Plug 'nvim-lualine/lualine.nvim'  " 状态栏美化
 Plug 'tpope/vim-fugitive'  " Git集成插件
 Plug 'tpope/vim-surround'  " 括号高效处理工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
 Plug 'preservim/nerdcommenter'  " 代码注释工具
 Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
-Plug 'vim-airline/vim-airline'  " vim状态栏美化
-Plug 'vim-airline/vim-airline-themes'  " vim状态栏主题
-Plug 'ryanoasis/vim-devicons'  " 图标美化
+Plug 'ryanoasis/vim-devicons'  " 图标优化
+Plug 'akinsho/bufferline.nvim', { 'tag': '*' }  " buffer栏显示
 Plug 'junegunn/vim-slash'  " vim搜索优化
 Plug 'junegunn/gv.vim'  " git commit查看工具
 Plug 'RRethy/vim-illuminate'  " 相同单词高亮
@@ -150,7 +148,10 @@ Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
 Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
 Plug 'chxuan/vim-buffer'  " Buffer操作工具
-Plug 'puremourning/vimspector'  " 代码 Debug 工具
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'theHamsta/nvim-dap-virtual-text'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切板
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
@@ -187,11 +188,6 @@ vmap <leader><leader>y "+y
 
 " 打开文件自动定位到最后编辑的位置
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g'\"" | endif
-
-" 主题设置
-set background=dark
-let g:onedark_termcolors=256
-colorscheme onedark
 
 " fswitch
 nmap <silent> gf :FSHere<cr>
@@ -245,31 +241,6 @@ map g/ <Plug>(incsearch-stay)
 let g:AutoPairsFlyMode = 0
 let g:AutoPairsMultilineClose = 0
 
-" nerdtree
-nnoremap <silent> <leader>n :NERDTreeToggle<cr>
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1         
-let g:NERDTreeHighlightFoldersFullName = 1 
-let g:NERDTreeDirArrowExpandable='▷'
-let g:NERDTreeDirArrowCollapsible='▼'
-let g:NERDTreeIgnore=['\.pyc','\~$','\.swp']
-
-" nerdtree-git-plugin
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-            \ "Modified"  : "✹",
-            \ "Staged"    : "✚",
-            \ "Untracked" : "✭",
-            \ "Renamed"   : "➜",
-            \ "Unmerged"  : "═",
-            \ "Deleted"   : "✖",
-            \ "Dirty"     : "✗",
-            \ "Clean"     : "✔︎",
-            \ 'Ignored'   : '☒',
-            \ "Unknown"   : "?"
-            \ }
-
 " nerdcommenter
 let g:NERDCreateDefaultMappings = 0
 let g:NERDSpaceDelims = 1
@@ -281,18 +252,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 nnoremap gcc :call nerdcommenter#Comment(0, "toggle")<C-m>
 vnoremap gc :call nerdcommenter#Comment(0, "toggle")<C-m>
-
-" airline
-let g:airline_theme="onedark"
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
 
 " vim-slash
 noremap <plug>(slash-after) zz
@@ -467,57 +426,13 @@ vmap <Leader>T <Plug>(coc-translator-pv)
 
 " ======================================> coc.vim setting end
 
-" puremourning/vimspector
-let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-" for normal mode - the word under the cursor
-nmap <Leader>di <Plug>VimspectorBalloonEval
-" for visual mode, the visually selected text
-xmap <Leader>di <Plug>VimspectorBalloonEval
-
 " ojroques/vim-oscyank
 nmap <leader>c <Plug>OSCYankOperator
 vmap <leader>c <Plug>OSCYankVisual
 
-" ruifm/gitlinker.nvim
+" 加载lua配置
 lua << EOF
-require"gitlinker".setup({
-  opts = {
-    remote = nil, -- force the use of a specific remote
-    -- adds current line nr in the url for normal mode
-    add_current_line_on_normal_mode = true,
-    -- callback for what to do with the url
-    action_callback = function(url)
-      -- yank to unnamed register
-      vim.api.nvim_command('let @" = \'' .. url .. '\'')
-      -- copy to the system clipboard using OSC52
-      vim.fn.OSCYank(url)
-    end,
-    -- print the url after performing the action
-    print_url = true,
-  },
-  callbacks = {
-        ["github.com"] = require"gitlinker.hosts".get_github_type_url,
-        ["gitlab.com"] = require"gitlinker.hosts".get_gitlab_type_url,
-        ["try.gitea.io"] = require"gitlinker.hosts".get_gitea_type_url,
-        ["codeberg.org"] = require"gitlinker.hosts".get_gitea_type_url,
-        ["bitbucket.org"] = require"gitlinker.hosts".get_bitbucket_type_url,
-        ["try.gogs.io"] = require"gitlinker.hosts".get_gogs_type_url,
-        ["git.sr.ht"] = require"gitlinker.hosts".get_srht_type_url,
-        ["git.launchpad.net"] = require"gitlinker.hosts".get_launchpad_type_url,
-        ["repo.or.cz"] = require"gitlinker.hosts".get_repoorcz_type_url,
-        ["git.kernel.org"] = require"gitlinker.hosts".get_cgit_type_url,
-        ["git.savannah.gnu.org"] = require"gitlinker.hosts".get_cgit_type_url,
-        ["icode.baidu.com"] = function(url_data)
-            url_data.host = "console.cloud.baidu-int.com/devops/icode/repos"
-            local url = require"gitlinker.hosts".get_base_https_url(url_data) ..
-                "/blob/" .. url_data.rev .. "/" .. url_data.file
-            if url_data.lstart then url = url .. "#L" .. url_data.lstart end
-            return url
-        end
-  },
--- default mapping to call url generation with action_callback
-  mappings = "<leader>gy"
-})
+require('init')
 EOF
 
 " 加载自定义配置
