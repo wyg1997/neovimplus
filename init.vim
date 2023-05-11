@@ -127,6 +127,7 @@ Plug 'nvim-lualine/lualine.nvim'  " 状态栏美化
 Plug 'tpope/vim-fugitive'  " Git集成插件
 Plug 'tpope/vim-surround'  " 括号高效处理工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
+Plug 'luochen1990/rainbow'  " 括号彩色匹配显示
 Plug 'preservim/nerdcommenter'  " 代码注释工具
 Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
 Plug 'ryanoasis/vim-devicons'  " 图标优化
