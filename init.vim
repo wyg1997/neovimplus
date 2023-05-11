@@ -149,14 +149,15 @@ Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
 Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
 Plug 'chxuan/vim-buffer'  " Buffer操作工具
-Plug 'mfussenegger/nvim-dap'
-Plug 'rcarriga/nvim-dap-ui'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'mfussenegger/nvim-dap'  " 调试工具
+Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " nvim-dap-virtual-text依赖
+Plug 'theHamsta/nvim-dap-virtual-text'  " dap变量值显示
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切板
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
 Plug 'ruifm/gitlinker.nvim'  " 生成代码对应的 github 链接
+Plug 'yegappan/taglist'  " 代码大纲
 
 " 加载自定义插件
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
@@ -201,7 +202,8 @@ nnoremap <leader>rr :ReplaceTo<space>
 
 " LeaderF
 nnoremap <leader>f :LeaderfFile .<cr>
-nnoremap <leader>t :LeaderfFunction!<cr>
+" NOTE: use taglist
+" nnoremap <leader>t :LeaderfFunction!<cr>
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh', 'log'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
