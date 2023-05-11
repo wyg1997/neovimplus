@@ -2,8 +2,8 @@ vim.g.rainbow_active = 1
 
 vim.cmd([[
     let g:rainbow_conf = {
-    \	'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
-    \	'ctermfgs': ['lightcyan', 'lightyellow', 'lightblue', 'lightmagenta'],
+    \	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'darkyellow'],
+    \	'ctermfgs': ['blue', 'yellow', 'cyan', 'brown'],
     \	'operators': '_,_',
     \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
     \	'separately': {
@@ -12,7 +12,7 @@ vim.cmd([[
     \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
     \		},
     \		'lisp': {
-    \			'guifgs': ['darkorange3', 'seagreen3', 'royalblue3', 'firebrick'],
+    \			'guifgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
     \		},
     \		'vim': {
     \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
