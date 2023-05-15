@@ -100,8 +100,8 @@
         "elixir": "mix_format",
         "eelixir": "mix_format",
         "python": [
-            "black",
-            "isort"
+            "isort",
+            "black"
         ]
     },
     "languageserver": {
