@@ -5,7 +5,10 @@ vim.opt.termguicolors = true
 require("bufferline").setup{
     options = {
         mode = "buffers",
-        numbers = "ordinal",
+        numbers = function(opts)
+            return string.format('%s', opts.ordinal)
+        end,
+        separator_style = "slant",
         indicator = {
             icon = icons.ui.BoldLineLeft, -- this should be omitted if indicator style is not 'icon'
             style = "icon", -- can also be 'underline'|'none',
@@ -17,8 +20,12 @@ require("bufferline").setup{
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         truncate_names = true, -- whether or not tab names should be truncated
         tab_size = 18,
-        separator_style = "thin",
         enforce_regular_tabs = false,
+        hover = {
+            enabled = true,
+            delay = 200,
+            reveal = {'close'}
+        },
         offsets = {
         {
           filetype = "undotree",
