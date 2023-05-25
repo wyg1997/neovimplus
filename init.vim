@@ -30,6 +30,8 @@ set whichwrap+=<,>,h,l   " 设置光标键跨行
 set ttimeoutlen=0        " 设置<ESC>键响应时间
 set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
 set mouse=               " 默认关闭鼠标模式
+" 设置鼠标模式切换快捷键
+nnoremap <silent> <leader>m :if &mouse == 'a' \| set mouse= \| echo "Mouse mode: off" \| else \| set mouse=a \| echo "Mouse mode: on" \| endif<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码缩进和排版
