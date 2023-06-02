@@ -171,7 +171,7 @@ function install_vim_plugin()
 function begin_install_vimplus()
 {
     copy_files
-    python3 -m pip install neovim jedi-language-server
+    python3 -m pip install neovim jedi-language-server cmakelang
     install_vim_plugin
 }
 

@@ -6,7 +6,8 @@
         "c",
         "cpp",
         "yaml",
-        "markdown"
+        "markdown",
+        "cmake",
     ],
     "coc.preferences.semanticTokensHighlights": false,
     "coc.preferences.enableFloatHighlight": true,
@@ -56,7 +57,7 @@
     },
     "translator.engines": [
         "youdao",
-        "haici"
+        "haici",
     ],
     "diagnostic.errorSign": "\uf467",
     "diagnostic.warningSign": "\uf071",
@@ -69,6 +70,9 @@
     "diagnostic.virtualText": true,
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.messageTarget": "echo",
+    "cmake.formatter_args": [
+        "--tab-size=4",
+    ],
     "codeLens.enable": true,
     "list.previewHighlightGroup": "Statement",
     "list.nextKeymap": "<C-j>",
