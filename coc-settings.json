@@ -7,7 +7,6 @@
         "cpp",
         "yaml",
         "markdown",
-        "cmake",
     ],
     "coc.preferences.semanticTokensHighlights": false,
     "coc.preferences.enableFloatHighlight": true,
@@ -66,8 +65,8 @@
     "diagnostic.displayByAle": false,
     "diagnostic.refreshOnInsertMode": false,
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualText": true,
+    "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.messageTarget": "echo",
     "cmake.formatter_args": [

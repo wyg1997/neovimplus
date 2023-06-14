@@ -160,6 +160,7 @@ Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切�
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
 Plug 'ruifm/gitlinker.nvim'  " 生成代码对应的 github 链接
 Plug 'yegappan/taglist'  " 代码大纲
+Plug 'folke/which-key.nvim'  " 快捷键提示
 
 " 加载自定义插件
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
@@ -446,4 +447,3 @@ EOF
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.config'))
     source $HOME/.config/nvim/init.vim.custom.config
 endif
-
