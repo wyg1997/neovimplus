@@ -237,6 +237,7 @@ Buffer栏美化。
 | `:Format`           | Format代码                                |
 | `:OR`               | 组织import                                |
 | `<leader>T`         | popup 方式翻译文本                        |
+| `<leader>cd`        | CocDiagnostics 开关状态切换               |
 
 ### vim-oscyank
 
