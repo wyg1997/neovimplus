@@ -270,6 +270,7 @@ neovim debug插件。
 | `<leader>E`         | 输出命令的值                              |
 | `<leader>C`         | 添加条件断点                              |
 | (v模式)`<leader>E`  | 输出选中内容的值                          |
+| `<leader>Q`         | 退出调试                                  |
 
 ### 杂项
 
