@@ -62,14 +62,23 @@ require("bufferline").setup{
 }
 require('bufferline.groups').builtin.pinned:with({ icon = "" })
 
-vim.api.nvim_set_keymap("n", "<leader>1", ":BufferLineGoToBuffer 1<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>2", ":BufferLineGoToBuffer 2<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>3", ":BufferLineGoToBuffer 3<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>4", ":BufferLineGoToBuffer 4<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>5", ":BufferLineGoToBuffer 5<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>6", ":BufferLineGoToBuffer 6<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>7", ":BufferLineGoToBuffer 7<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>8", ":BufferLineGoToBuffer 8<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>9", ":BufferLineGoToBuffer 9<CR>", {noremap = true, silent = true})
-
-vim.api.nvim_set_keymap("n", "<leader>`", ":BufferLineTogglePin<CR>", {noremap = true, silent = true})
+require "which-key".register({
+    name = "bufferline",
+    ["1"] = { ":BufferLineGoToBuffer 1<CR>", "To buffer 1"},
+    ["2"] = { ":BufferLineGoToBuffer 2<CR>", "To buffer 2"},
+    ["3"] = { ":BufferLineGoToBuffer 3<CR>", "To buffer 3"},
+    ["4"] = { ":BufferLineGoToBuffer 4<CR>", "To buffer 4"},
+    ["5"] = { ":BufferLineGoToBuffer 5<CR>", "To buffer 5"},
+    ["6"] = { ":BufferLineGoToBuffer 6<CR>", "To buffer 6"},
+    ["7"] = { ":BufferLineGoToBuffer 7<CR>", "To buffer 7"},
+    ["8"] = { ":BufferLineGoToBuffer 8<CR>", "To buffer 8"},
+    ["9"] = { ":BufferLineGoToBuffer 9<CR>", "To buffer 9"},
+    ["`"] = { ":BufferLineTogglePin<CR>", "Pin current buffer" },
+  }, {
+    mode = "n",
+    prefix = "<leader>",
+    buffer = nil,
+    silent = true,
+    noremap = true,
+    nowait = false,
+})
