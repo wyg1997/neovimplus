@@ -118,9 +118,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'derekwyatt/vim-fswitch'  " .h和.c/.cc/.cpp文件切换
 Plug 'chxuan/vim-edit'  " 方便的文本编辑工具
-Plug 'Yggdroot/LeaderF'  " 强大的文件搜索工具
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " 文本搜索工具
-Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua', {'branch': 'main'}  " lua文件搜索工具
 Plug 'easymotion/vim-easymotion'  " 单词跳转
 Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
 Plug 'jiangmiao/auto-pairs'  " 括号匹配工具
@@ -201,37 +200,6 @@ nnoremap Y :CopyText<cr>
 nnoremap D :DeleteText<cr>
 nnoremap C :ChangeText<cr>
 nnoremap <leader>rr :ReplaceTo<space>
-
-" LeaderF
-nnoremap <leader>f :LeaderfFile .<cr>
-" NOTE: use taglist
-" nnoremap <leader>t :LeaderfFunction!<cr>
-let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg','.vscode','.wine','.deepinwine','.oh-my-zsh', 'log'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-            \}
-let g:Lf_UseCache = 0
-let g:Lf_UseVersionControlTool = 1
-let g:Lf_NormalMap = {
-	\ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']],
-	\ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']],
-	\ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-	\ "Tag":    [["<ESC>", ':exec g:Lf_py "tagExplManager.quit()"<CR>']],
-	\ "Function":    [["<ESC>", ':exec g:Lf_py "functionExplManager.quit()"<CR>']],
-	\ "Colorscheme":    [["<ESC>", ':exec g:Lf_py "colorschemeExplManager.quit()"<CR>']],
-	\ }
-
-" fzf
-nnoremap <leader>F :Rg<space>
-let g:fzf_buffers_jump = 1
-let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_preview_window = ['hidden,right,50%,<70(up,50%)', 'ctrl-/']
-let $FZF_DEFAULT_OPTS="--ansi --layout reverse"
-" Rg command with preview window
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
 
 " vim-easymotion
 let g:EasyMotion_smartcase = 1
