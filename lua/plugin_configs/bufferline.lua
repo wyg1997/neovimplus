@@ -74,6 +74,10 @@ require "which-key".register({
     ["8"] = { ":BufferLineGoToBuffer 8<CR>", "To buffer 8"},
     ["9"] = { ":BufferLineGoToBuffer 9<CR>", "To buffer 9"},
     ["`"] = { ":BufferLineTogglePin<CR>", "Pin current buffer" },
+    ["<Tab>"] = { ":BufferLineCycleNext<CR>", "Switch to the next buffer" },
+    ["<S-Tab>"] = { ":BufferLineCyclePrev<CR>", "Switch to the prev buffer" },
+    ["x"] = { ":bd<CR>", "Close this buffer" },
+    ["X"] = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all buffers except current buffer" },
   }, {
     mode = "n",
     prefix = "<leader>",

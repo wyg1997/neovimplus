@@ -150,7 +150,6 @@ Plug 'rhysd/clever-f.vim'  " 快速字符跳转
 Plug 'vim-scripts/indentpython.vim'  " python缩进辅助
 Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvie/vim-flake8'  " 使用flake8检察python代码
-Plug 'chxuan/vim-buffer'  " Buffer操作工具
 Plug 'mfussenegger/nvim-dap'  " 调试工具
 Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " nvim-dap-virtual-text依赖
@@ -287,12 +286,6 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " Termdebug
 let g:termdebug_wide = 163
 tnoremap <ESC><ESC> <C-\><C-N>
-
-" vim-buffer
-nnoremap <leader><tab> :NextBuffer<cr>
-nnoremap <leader><S-tab> :PreviousBuffer<cr>
-nnoremap <leader>x :CloseBuffer<cr>
-nnoremap <leader>X :BufOnly<cr>
 
 " coc.nvim
 " ======================================> coc.vim setting start

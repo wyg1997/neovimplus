@@ -197,17 +197,6 @@ Python代码缩进辅助。
 | -------             | -----                                     |
 | `<F7>`              | 使用flake8检察                            |
 
-### vim-buffer
-
-Buffer操作工具。
-
-| 快捷键              | 说明                                      |
-| -------             | -----                                     |
-| `<leader><tab>`     | 切换到下一个buffer                        |
-| `<leader><S-tab>`   | 切换到上一个buffer                        |
-| `<leader>x`         | 删除当前buffer                            |
-| `<leader>X`         | 删除当前buffer外的所有buffer              |
-
 ### bufferline
 
 Buffer栏美化。
@@ -215,7 +204,11 @@ Buffer栏美化。
 | 快捷键              | 说明                                      |
 | -------             | -----                                     |
 | `<leader>number`    | 切换到几号buffer                          |
-| `<leader>\``        | pin这个buffer                             |
+| `<leader>``         | pin这个buffer                             |
+| `<leader><tab>`     | 切换到下一个buffer                        |
+| `<leader><S-tab>`   | 切换到上一个buffer                        |
+| `<leader>x`         | 删除当前buffer                            |
+| `<leader>X`         | 删除当前buffer外的所有buffer              |
 
 ### coc.nvim
 
