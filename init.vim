@@ -130,6 +130,7 @@ Plug 'tpope/vim-surround'  " 括号高效处理工具
 Plug 'tpope/vim-repeat'  " 扩展vim的repeat
 Plug 'luochen1990/rainbow'  " 括号彩色匹配显示
 Plug 'preservim/nerdcommenter'  " 代码注释工具
+Plug 'godlygeek/tabular'  "  文本对齐工具
 Plug 'octol/vim-cpp-enhanced-highlight'  " C++高亮工具
 Plug 'ryanoasis/vim-devicons'  " 图标优化
 Plug 'akinsho/bufferline.nvim', { 'tag': '*' }  " buffer栏显示
