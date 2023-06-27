@@ -1,4 +1,3 @@
--- vim.cmd [[:nmenu 10.100 fzf_grep_menu.sep- *]]
 vim.cmd[[:nmenu fzf_grep_menu.grep\ pattern        <cmd>:FzfLua grep<CR>]]
 vim.cmd[[:nmenu fzf_grep_menu.grep\ last           <cmd>:FzfLua grep_last<CR>]]
 vim.cmd[[:nmenu fzf_grep_menu.grep\ current\ word  <cmd>:FzfLua grep_cword<CR>]]
