@@ -11,7 +11,7 @@ require "which-key".register({
     b     = { "<cmd>FzfLua buffers<CR>", "search buffer" },
     ["/"] = { "<cmd>FzfLua blines<CR>", "search line from current buffer" },
     f     = { "<cmd>FzfLua files<CR>", "search files" },
-    F     = { "<cmd>popup fzf_grep_menu<CR>", "search text from files" },
+    F     = { "<cmd>popup fzf_grep_menu<CR>j", "search text from files" },
   }, {
     mode    = "n",
     prefix  = "<leader>",
