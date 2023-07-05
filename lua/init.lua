@@ -25,7 +25,10 @@ local function load_lua_files(dir, recursion)
   for _, file in ipairs(vim.fn.readdir(full_dir)) do
     local full_path = full_dir .. '/' .. file
     if vim.fn.isdirectory(full_path) == 0 and file:match('%.lua$') then
-      require(dir .. '/' .. string.gsub(file, '%.lua$', ''))
+      local success, module = pcall(require, dir .. '/' .. string.gsub(file, '%.lua$', ''))
+      if not success then
+        vim.api.nvim_err_writeln('Error loading ' .. dir .. '/' .. file .. ': ' .. module)
+      end
     elseif recursion and vim.fn.isdirectory(full_path) == 1 then
       load_lua_files(dir .. '/' .. file, recursion)
     end
