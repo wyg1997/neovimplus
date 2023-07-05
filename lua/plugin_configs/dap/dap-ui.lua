@@ -48,12 +48,11 @@ dapui.setup({
 
 local dap = require("dap")
 dap.listeners.after.event_initialized["dapui_config"] = function()
-    vim.api.nvim_command("call CocAction('diagnosticToggle')")
+    vim.api.nvim_command("call CocAction('diagnosticToggle', 0)")
     dapui.open({})
 end
 
 dap.listeners.before.event_terminated["dapui_config"] = function()
-    vim.api.nvim_command("call CocAction('diagnosticToggle')")
     dapui.close({})
     dap.repl.close()
 end
