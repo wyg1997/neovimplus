@@ -34,7 +34,7 @@ dapui.setup({
         }
     },
 
-    controls = {enabled = false},
+    controls = {enabled = true},
     floating = {
         max_height = nil, -- These can be integers or a float between 0 and 1.
         max_width = nil, -- Floats will be treated as percentage of your screen.
@@ -56,7 +56,6 @@ dap.listeners.before.event_terminated["dapui_config"] = function()
     dapui.close({})
     dap.repl.close()
 end
-
 
 dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close({})
