@@ -74,7 +74,7 @@ whichkey.register({
     ["<F12>"] = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
     ["<leader>E"] = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
     ["<leader>C"] = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
-    ["<leader>Q"] = { "<cmd>lua require'dap'.close()<CR><cmd>lua require'dapui'.close()<cr>", "Quit" },
+    ["<leader>Q"] = { "<cmd>lua require'dap'.terminate()<CR><cmd>lua require'dapui'.close()<cr>", "Quit" },
   }, {
     mode = "n",
     prefix = "",
