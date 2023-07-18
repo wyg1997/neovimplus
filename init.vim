@@ -181,6 +181,9 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 
+" 复制当前选中到系统剪切板, 可在多个 vim 间复制
+set clipboard+=unnamed
+
 " jump in popup window
 nnoremap <leader>pp :call coc#float#jump()<cr>
 
