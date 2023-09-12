@@ -69,9 +69,6 @@
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.messageTarget": "echo",
-    "cmake.formatter_args": [
-        "--tab-size=4",
-    ],
     "codeLens.enable": true,
     "list.previewHighlightGroup": "Statement",
     "list.nextKeymap": "<C-j>",

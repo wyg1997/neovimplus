@@ -316,6 +316,7 @@ endfunction
 inoremap <silent><expr> <C-l> coc#refresh()
 
 " Set diagnostic keymap
+nnoremap <leader>cp :call CocAction('diagnosticInfo', 'float')<CR>
 nnoremap <leader>cd :call CocAction('diagnosticToggle')<CR>
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev-error)
