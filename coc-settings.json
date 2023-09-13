@@ -69,6 +69,7 @@
     "diagnostic.virtualTextPrefix": " ❯❯❯ ",
     "diagnostic.virtualTextCurrentLineOnly": true,
     "diagnostic.messageTarget": "echo",
+    "inlayHint.enable": true,
     "codeLens.enable": true,
     "list.previewHighlightGroup": "Statement",
     "list.nextKeymap": "<C-j>",

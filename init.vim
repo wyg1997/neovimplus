@@ -373,10 +373,11 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " omap if <Plug>(coc-funcobj-i)
 " omap af <Plug>(coc-funcobj-a)
  
+" NOTE: use nvim-treesitter plugin implement it, see help.md for detail.
 " Use CTRL-S for selections ranges
 " Requires 'textDocument/selectionRange' support of language server
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')

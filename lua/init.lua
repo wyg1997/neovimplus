@@ -39,6 +39,7 @@ end
 vim.opt.background = "dark"
 vim.g.onedark_termcolors = 256
 vim.cmd("colorscheme onedark")
+require("custom_colors")
 
 -- load plugin configs
 load_lua_files('plugin_configs', true)
