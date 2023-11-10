@@ -11,25 +11,26 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 通用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","      " 定义<leader>键
-set nocompatible         " 设置不兼容原始vi模式
-filetype on              " 设置开启文件类型侦测
-filetype plugin on       " 设置加载对应文件类型的插件
-set noeb                 " 关闭错误的提示
-syntax enable            " 开启语法高亮功能
-syntax on                " 自动语法高亮
-set t_Co=256             " 开启256色支持
-set cmdheight=2          " 设置命令行的高度
-set showcmd              " select模式下显示选中的行数
-set ruler                " 总是显示光标位置
-set laststatus=2         " 总是显示状态栏
-set number               " 开启行号显示
-set relativenumber       " 开启相对行号显示
-set cursorline           " 高亮显示当前行
-set whichwrap+=<,>,h,l   " 设置光标键跨行
-set ttimeoutlen=0        " 设置<ESC>键响应时间
-set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后面
-set mouse=               " 默认关闭鼠标模式
+let mapleader = ","              " 定义<leader>键
+set nocompatible                 " 设置不兼容原始vi模式
+filetype on                      " 设置开启文件类型侦测
+filetype plugin on               " 设置加载对应文件类型的插件
+set noeb                         " 关闭错误的提示
+syntax enable                    " 开启语法高亮功能
+syntax on                        " 自动语法高亮
+set t_Co=256                     " 开启256色支持
+set cmdheight=2                  " 设置命令行的高度
+set showcmd                      " select模式下显示选中的行数
+set ruler                        " 总是显示光标位置
+set laststatus=2                 " 总是显示状态栏
+set number                       " 开启行号显示
+set relativenumber               " 开启相对行号显示
+set cursorline                   " 高亮显示当前行
+set whichwrap+=<,>,h,l           " 设置光标键跨行
+set ttimeoutlen=0                " 设置<ESC>键响应时间
+set virtualedit=block,onemore    " 允许光标出现在最后一个字符的后面
+set mouse=                       " 默认关闭鼠标模式
+set wildmode=longest:full,list   " cmd 命令补全使用 bash 风格
 " 设置鼠标模式切换快捷键
 nnoremap <silent> <leader>m :if &mouse == 'a' \| set mouse= \| echo "Mouse mode: off" \| else \| set mouse=a \| echo "Mouse mode: on" \| endif<CR>
 
@@ -151,12 +152,13 @@ Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'mfussenegger/nvim-dap'  " 调试工具
 Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " 代码高亮、缩进和折叠等
+Plug 'nvim-treesitter/nvim-treesitter-context'  " 代码上下文
 Plug 'theHamsta/nvim-dap-virtual-text'  " dap变量值显示
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切板
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
 Plug 'ruifm/gitlinker.nvim'  " 生成代码对应的 github 链接
-Plug 'yegappan/taglist'  " 代码大纲
+Plug 'liuchengxu/vista.vim'  " 代码大纲
 Plug 'folke/which-key.nvim'  " 快捷键提示
 
 " 加载自定义插件
