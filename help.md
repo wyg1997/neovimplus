@@ -23,7 +23,7 @@ Leader Key: `,`
 | `<leader>rr`        | 单文件内全局替换                          |
 | `rev`               | 翻转当前光标下的单词或使用V模式选择的文本 |
 
-### taglist
+### vista
 
 代码大纲显示。
 
@@ -42,6 +42,7 @@ Leader Key: `,`
 | `<leader>f`         | 搜索当前目录下的文件                      |
 | `<leader>F`         | 搜索当前目录下的文本                      |
 | `(v模式)<leader>F`  | 搜索选中的文本                            |
+| `<F1>`              | 打开快捷键帮助                            |
 
 ### vim-easymotion
 
