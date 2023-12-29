@@ -85,7 +85,9 @@ function install_prepare_software_on_ubuntu()
         sudo apt-get install -y cmake
     fi
 
-    sudo apt-get install -y neovim npm exuberant-ctags build-essential python python-dev python3-dev fontconfig libfile-next-perl ack-grep git ripgrep fzf
+    sudo apt-get install -y neovim npm exuberant-ctags build-essential python python-dev python3-dev fontconfig libfile-next-perl ack-grep git
+    # 插件需要
+    sudo apt-get install -y ripgrep fzf debugpy
     # 安装最新版nodejs(coc.nvim要求)
     sudo npm config set registry https://registry.npm.taobao.org
     sudo npm install n -g

@@ -149,11 +149,12 @@ Plug 'Shougo/echodoc.vim'  " 补全时显示函数签名
 Plug 'terryma/vim-smooth-scroll'  " 平滑滚动
 Plug 'rhysd/clever-f.vim'  " 快速字符跳转
 Plug 'docunext/closetag.vim'  " 自动完成html标签
-Plug 'mfussenegger/nvim-dap'  " 调试工具
-Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " 代码高亮、缩进和折叠等
 Plug 'nvim-treesitter/nvim-treesitter-context'  " 代码上下文
 Plug 'theHamsta/nvim-dap-virtual-text'  " dap变量值显示
+Plug 'mfussenegger/nvim-dap'  " 调试工具
+Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
+Plug 'mfussenegger/nvim-dap-python'  " python调试工具
 Plug 'neoclide/coc.nvim', {'branch': 'release'}  " 强大的nvim代码智能感知插件
 Plug 'ojroques/vim-oscyank', {'branch': 'main'}  " 复制内容到本地剪切板
 Plug 'nvim-lua/plenary.nvim'  " Lua 语法糖
