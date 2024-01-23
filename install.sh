@@ -76,6 +76,7 @@ function get_ubuntu_version()
 # 安装ubuntu必备软件
 function install_prepare_software_on_ubuntu()
 {
+    sudo apt-get install software-properties-common
     echo "\n" | sudo add-apt-repository ppa:neovim-ppa/unstable
 
     version=$(get_ubuntu_version)
