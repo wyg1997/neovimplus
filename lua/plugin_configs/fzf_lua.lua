@@ -6,28 +6,14 @@ vim.cmd[[:nmenu fzf_grep_menu.live\ grep\ buffer   <cmd>:FzfLua lgrep_curbuf<CR>
 vim.cmd[[:nmenu fzf_grep_menu.live\ grep\ project  <cmd>:FzfLua live_grep<CR>]]
 vim.cmd[[:nmenu fzf_grep_menu.live\ grep\ resume   <cmd>:FzfLua live_grep_resume<CR>]]
 
-require "which-key".register({
-    name  = "fzf-lua",
-    b     = { "<cmd>FzfLua buffers<CR>", "search buffer" },
-    ["/"] = { "<cmd>FzfLua blines<CR>", "search line from current buffer" },
-    f     = { "<cmd>FzfLua files<CR>", "search files" },
-    F     = { "<cmd>popup fzf_grep_menu<CR>j", "search text from files" },
-  }, {
-    mode    = "n",
-    prefix  = "<leader>",
-    buffer  = nil,
-    silent  = true,
-    noremap = true,
-    nowait  = false,
+require "which-key".add({
+    { "<leader>/", "<cmd>FzfLua blines<CR>", desc = "search line from current buffer", nowait = false, remap = false },
+    { "<leader>F", "<cmd>popup fzf_grep_menu<CR>j", desc = "search text from files", nowait = false, remap = false },
+    { "<leader>b", "<cmd>FzfLua buffers<CR>", desc = "search buffer", nowait = false, remap = false },
+    { "<leader>f", "<cmd>FzfLua files<CR>", desc = "search files", nowait = false, remap = false },
 })
 
-require "which-key".register({
-    F = { "<cmd>FzfLua grep_visual<CR>", "search visual text from files" },
-  }, {
-    mode    = "v",
-    prefix  = "<leader>",
-    buffer  = nil,
-    silent  = true,
-    noremap = true,
-    nowait  = false,
+require "which-key".add({
+    mode = {"v"},
+    { "<leader>F", "<cmd>FzfLua grep_visual<CR>", desc = "search visual text from files", nowait = false, remap = false },
 })

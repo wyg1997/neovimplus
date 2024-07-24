@@ -41,7 +41,6 @@ vim.cmd([[
     \  }
 ]])
 
-require "which-key".register({
-    name = "Vista",
-    ["<leader>t"] = { ":Vista!!<CR>", "Toggle Vista"},
+require "which-key".add({
+    { "<leader>t", ":Vista!!<CR>", desc = "Toggle Vista" },
 })

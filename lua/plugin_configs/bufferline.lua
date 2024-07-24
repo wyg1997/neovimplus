@@ -62,27 +62,19 @@ require("bufferline").setup{
 }
 require('bufferline.groups').builtin.pinned:with({ icon = "" })
 
-require "which-key".register({
-    name = "bufferline",
-    ["1"] = { ":BufferLineGoToBuffer 1<CR>", "To buffer 1"},
-    ["2"] = { ":BufferLineGoToBuffer 2<CR>", "To buffer 2"},
-    ["3"] = { ":BufferLineGoToBuffer 3<CR>", "To buffer 3"},
-    ["4"] = { ":BufferLineGoToBuffer 4<CR>", "To buffer 4"},
-    ["5"] = { ":BufferLineGoToBuffer 5<CR>", "To buffer 5"},
-    ["6"] = { ":BufferLineGoToBuffer 6<CR>", "To buffer 6"},
-    ["7"] = { ":BufferLineGoToBuffer 7<CR>", "To buffer 7"},
-    ["8"] = { ":BufferLineGoToBuffer 8<CR>", "To buffer 8"},
-    ["9"] = { ":BufferLineGoToBuffer 9<CR>", "To buffer 9"},
-    ["`"] = { ":BufferLineTogglePin<CR>", "Pin current buffer" },
-    ["<Tab>"] = { ":BufferLineCycleNext<CR>", "Switch to the next buffer" },
-    ["<S-Tab>"] = { ":BufferLineCyclePrev<CR>", "Switch to the prev buffer" },
-    ["x"] = { ":bd<CR>", "Close this buffer" },
-    ["X"] = { "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", "Close all buffers except current buffer" },
-  }, {
-    mode = "n",
-    prefix = "<leader>",
-    buffer = nil,
-    silent = true,
-    noremap = true,
-    nowait = false,
+require "which-key".add({
+    { "<leader>1", ":BufferLineGoToBuffer 1<CR>", desc = "To buffer 1", nowait = false, remap = false },
+    { "<leader>2", ":BufferLineGoToBuffer 2<CR>", desc = "To buffer 2", nowait = false, remap = false },
+    { "<leader>3", ":BufferLineGoToBuffer 3<CR>", desc = "To buffer 3", nowait = false, remap = false },
+    { "<leader>4", ":BufferLineGoToBuffer 4<CR>", desc = "To buffer 4", nowait = false, remap = false },
+    { "<leader>5", ":BufferLineGoToBuffer 5<CR>", desc = "To buffer 5", nowait = false, remap = false },
+    { "<leader>6", ":BufferLineGoToBuffer 6<CR>", desc = "To buffer 6", nowait = false, remap = false },
+    { "<leader>7", ":BufferLineGoToBuffer 7<CR>", desc = "To buffer 7", nowait = false, remap = false },
+    { "<leader>8", ":BufferLineGoToBuffer 8<CR>", desc = "To buffer 8", nowait = false, remap = false },
+    { "<leader>9", ":BufferLineGoToBuffer 9<CR>", desc = "To buffer 9", nowait = false, remap = false },
+    { "<leader><S-Tab>", ":BufferLineCyclePrev<CR>", desc = "Switch to the prev buffer", nowait = false, remap = false },
+    { "<leader><Tab>", ":BufferLineCycleNext<CR>", desc = "Switch to the next buffer", nowait = false, remap = false },
+    { "<leader>X", "<cmd>BufferLineCloseLeft<CR><cmd>BufferLineCloseRight<CR>", desc = "Close all buffers except current buffer", nowait = false, remap = false },
+    { "<leader>`", ":BufferLineTogglePin<CR>", desc = "Pin current buffer", nowait = false, remap = false },
+    { "<leader>x", ":bd<CR>", desc = "Close this buffer", nowait = false, remap = false },
 })

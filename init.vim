@@ -152,6 +152,7 @@ Plug 'docunext/closetag.vim'  " 自动完成html标签
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " 代码高亮、缩进和折叠等
 Plug 'nvim-treesitter/nvim-treesitter-context'  " 代码上下文
 Plug 'theHamsta/nvim-dap-virtual-text'  " dap变量值显示
+Plug 'nvim-neotest/nvim-nio'  " 调试工具依赖
 Plug 'mfussenegger/nvim-dap'  " 调试工具
 Plug 'rcarriga/nvim-dap-ui'  " 调试工具UI
 Plug 'mfussenegger/nvim-dap-python'  " python调试工具
