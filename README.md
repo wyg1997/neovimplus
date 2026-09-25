@@ -1,3 +1,5 @@
+
+
 # NeovimPlus
 
 Simple and beautiful editor for neovim programmer.
@@ -14,7 +16,7 @@ Simple and beautiful editor for neovim programmer.
 ```shell
 git clone https://github.com/wyg1997/neovimplus.git ~/.neovimplus
 cd ~/.neovimplus
-./install.sh
+bash install.sh
 ```
 
 > NOTE: 字体个人使用: [MesloNerdFont](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo/M)，可以兼顾p10k和插件里的一些图标显示。
@@ -32,4 +34,3 @@ cd ~/.neovimplus
 ## 反馈
 
 内置插件都是本人用起来比较舒服的，可能有些并不是那么好用，如果在使用体验上有不好的地方，欢迎提 issue 反馈，我也会慢慢改进。
-
