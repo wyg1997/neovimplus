@@ -1,36 +1,31 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
-set -e
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOCAL_PREFIX="${NEOVIMPLUS_PREFIX:-${HOME}/.local}"
+NVIM="${NVIM:-${LOCAL_PREFIX}/bin/nvim}"
 
-# 获取当前分支名称
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+cd "$REPO_DIR"
+command -v "$NVIM" >/dev/null 2>&1 || "$REPO_DIR/install.sh"
 
-# 拉取上游代码并获取更新列表
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
 git fetch
-update_list=$(git rev-list --abbrev-commit --no-merges HEAD..origin/$current_branch)
+update_list="$(git rev-list --abbrev-commit --no-merges "HEAD..origin/$current_branch")"
 
-# 检查是否有更新可用
 if [ -z "$update_list" ]; then
-  echo "当前分支 '$current_branch' 没有可用的更新。"
-  exit 0
+    echo "当前分支 '$current_branch' 没有可用的更新。"
+else
+    previous_head="$(git rev-parse HEAD)"
+    git merge "origin/$current_branch"
+    current_head="$(git rev-parse HEAD)"
+
+    if [ "$previous_head" != "$current_head" ]; then
+        echo "以下是本次更新的 commit 改动："
+        while read -r commit_hash; do
+            git --no-pager show --stat --oneline --abbrev-commit "$commit_hash"
+        done <<< "$update_list"
+    fi
 fi
 
-# 获取合并前的最新提交
-previous_head=$(git rev-parse HEAD)
-
-# 更新到远程分支版本
-git merge origin/$current_branch
-
-# 获取合并后的最新提交
-current_head=$(git rev-parse HEAD)
-
-# 打印中间的所有 commit 改动
-echo "以下是本次更新的 commit 改动："
-while read -r commit_hash; do
-  git --no-pager show --stat --oneline --abbrev-commit $commit_hash || { echo "无法打印 commit $commit_hash 的改动信息。"; exit 1; }
-done <<< "$update_list"
-
-# 在 Neovim 中执行 PlugInstall
-nvim -c "PlugInstall|qall" || { echo "在 Neovim 中执行插件安装操作时发生错误。"; exit 1; }
-
-echo "更新完成。"
+# 同步脚本自身与最新配置；安装脚本是幂等的。
+"$REPO_DIR/install.sh"

@@ -1,4 +1,8 @@
 -- TODO: move these function to utils dir
+if vim.env.NEOVIMPLUS_INSTALLING == '1' then
+  return
+end
+
 local function is_win()
   return package.config:sub(1, 1) == '\\'
 end

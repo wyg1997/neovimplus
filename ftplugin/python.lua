@@ -1,8 +1,12 @@
 local dap = require('dap')
+local python = vim.g.python3_host_prog
+if not python or python == '' or vim.fn.executable(python) == 0 then
+    python = 'python3'
+end
 
 dap.adapters.python = {
     type = 'executable';
-    command = "python3";
+    command = python;
     args = {'-m', 'debugpy.adapter'};
 }
 
@@ -14,7 +18,7 @@ dap.configurations.python = {
 
         program = "${file}";
         pythonPath = function ()
-            return "python3"
+            return python
         end
     },
 }

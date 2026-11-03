@@ -13,6 +13,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","              " 定义<leader>键
 set nocompatible                 " 设置不兼容原始vi模式
+" 插件安装阶段不加载已有插件的脚本，避免半安装状态产生无关错误。
+if $NEOVIMPLUS_PLUGINSTALL == '1'
+    set noloadplugins
+endif
 filetype on                      " 设置开启文件类型侦测
 filetype plugin on               " 设置加载对应文件类型的插件
 set noeb                         " 关闭错误的提示
@@ -115,11 +119,16 @@ command! -nargs=1 -bar UnPlug call s:deregister(<args>)
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 插件列表
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 受限网络下安装插件时串行 clone，避免镜像/代理并发限流。
+if $NEOVIMPLUS_PLUGINSTALL == '1'
+    let g:plug_threads = 1
+endif
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'derekwyatt/vim-fswitch'  " .h和.c/.cc/.cpp文件切换
 Plug 'chxuan/vim-edit'  " 方便的文本编辑工具
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  " 文本搜索工具
+Plug 'junegunn/fzf'  " 文本搜索工具（安装脚本负责提供 fzf 可执行文件）
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}  " lua文件搜索工具
 Plug 'easymotion/vim-easymotion'  " 单词跳转
 Plug 'haya14busa/incsearch.vim'  " 文本搜索增强
@@ -149,7 +158,7 @@ Plug 'Shougo/echodoc.vim'  " 补全时显示函数签名
 Plug 'terryma/vim-smooth-scroll'  " 平滑滚动
 Plug 'rhysd/clever-f.vim'  " 快速字符跳转
 Plug 'docunext/closetag.vim'  " 自动完成html标签
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " 代码高亮、缩进和折叠等
+Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master'}  " 代码高亮、缩进和折叠等
 Plug 'nvim-treesitter/nvim-treesitter-context'  " 代码上下文
 Plug 'theHamsta/nvim-dap-virtual-text'  " dap变量值显示
 Plug 'nvim-neotest/nvim-nio'  " 调试工具依赖
@@ -169,6 +178,24 @@ if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.plugins'))
 endif
 
 call plug#end()  
+
+" coc.nvim 使用用户态安装的 Node.js，避免依赖系统 PATH。
+" 优先使用安装器下载的 Node.js，避免系统里的旧版本被 coc.nvim 选中。
+if executable(expand('~/.local/opt/node/bin/node'))
+  let g:coc_node_path = expand('~/.local/opt/node/bin/node')
+elseif executable('node')
+  let g:coc_node_path = exepath('node')
+endif
+
+" Python provider 跟随 PATH 中的全局 python3，不绑定 Neovim 私有 venv。
+if executable('python3')
+  let g:python3_host_prog = exepath('python3')
+endif
+
+" 安装阶段只加载插件声明，避免 vim-plug 在插件尚未就绪时提前初始化各插件。
+if $NEOVIMPLUS_INSTALLING != '1'
+  lua require('init')
+endif
 
 " load vim default plugin
 runtime macros/matchit.vim
@@ -402,11 +429,6 @@ vmap <Leader>T <Plug>(coc-translator-pv)
 " ojroques/vim-oscyank
 nmap <leader>c <Plug>OSCYankOperator
 vmap <leader>c <Plug>OSCYankVisual
-
-" 加载lua配置
-lua << EOF
-require('init')
-EOF
 
 " 加载自定义配置
 if filereadable(expand($HOME . '/.config/nvim/init.vim.custom.config'))
