@@ -25,8 +25,11 @@ FZF_VERSION="${FZF_VERSION:-0.74.5}"
 CLANGD_VERSION="${CLANGD_VERSION:-}"
 CLANGD_FALLBACK_VERSION="${CLANGD_FALLBACK_VERSION:-23.1.0}"
 BACKUP_SUFFIX="backup.$(date +%Y%m%d%H%M%S)"
-GITHUB_MIRRORS="${GITHUB_MIRRORS:-https://ghfast.top/ https://gh-proxy.com/}"
+GITHUB_MIRRORS="${GITHUB_MIRRORS:-https://ghfast.top/ https://ghfile.geekertao.top/ https://gh-proxy.com/ https://ghproxy.net/}"
 GITHUB_DIRECT="${GITHUB_DIRECT:-1}"
+NODE_MIRRORS="${NODE_MIRRORS:-https://mirrors.aliyun.com/nodejs-release/ https://npmmirror.com/mirrors/node/ https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/}"
+NPM_REGISTRY="${NPM_REGISTRY:-https://registry.npmmirror.com/}"
+PYPI_INDEX_URL="${PYPI_INDEX_URL:-https://pypi.tuna.tsinghua.edu.cn/simple}"
 
 OS=""
 ARCH=""
@@ -50,9 +53,33 @@ require_cmd() {
 download() {
     local url="$1"
     local output="$2"
-    curl -fL --retry 3 --retry-delay 2 --connect-timeout 8 --max-time 900 \
-        --speed-limit 1024 --speed-time 15 \
-        --silent --show-error "$url" -o "$output"
+    local canonical="${3:-$1}"
+    local marker="${output}.src"
+    local -a opts=(
+        --retry 2 --retry-delay 2 --connect-timeout 8 --max-time 600
+        --speed-limit 51200 --speed-time 20
+        --silent --show-error
+    )
+
+    # 只有残包确实来自同一个 URL 时才续传，避免拼接出损坏的压缩包
+    if [ -f "$output" ] && [ -f "$marker" ] && [ "$(cat "$marker")" = "$canonical" ]; then
+        :
+    else
+        rm -f "$output"
+    fi
+    printf '%s\n' "$canonical" > "$marker"
+
+    # 优先断点续传，网络抖动后不必从头再来
+    if curl -fL "${opts[@]}" -C - "$url" -o "$output"; then
+        rm -f "$marker"
+        return 0
+    fi
+    # 服务端不支持 Range 时退回整文件下载
+    if curl -fL "${opts[@]}" "$url" -o "$output"; then
+        rm -f "$marker"
+        return 0
+    fi
+    return 1
 }
 
 download_github() {
@@ -60,7 +87,6 @@ download_github() {
     local output="$2"
     local mirror
 
-    rm -f "$output"
     if [ "$GITHUB_DIRECT" = "1" ]; then
         if download "$url" "$output"; then
             return
@@ -69,13 +95,31 @@ download_github() {
 
     for mirror in $GITHUB_MIRRORS; do
         warn "直连 GitHub 失败，尝试镜像：$mirror"
-        if download "${mirror}${url}" "$output"; then
+        if download "${mirror}${url}" "$output" "$url"; then
             return
         fi
     done
 
     rm -f "$output"
     die "无法下载 $url（GitHub 直连和镜像均失败）"
+}
+
+download_node() {
+    local path="$1"
+    local output="$2"
+    local mirror
+    local direct_url="https://nodejs.org/dist/${NODE_VERSION}/${path}"
+
+    for mirror in $NODE_MIRRORS; do
+        if download "${mirror}${NODE_VERSION}/${path}" "$output" "$direct_url"; then
+            return
+        fi
+        warn "镜像下载失败，换下一个：$mirror"
+    done
+
+    warn "国内镜像均失败，回退到 nodejs.org 直连"
+    download "$direct_url" "$output" \
+        || { rm -f "$output"; die "无法下载 $direct_url（官方地址与镜像均失败）"; }
 }
 
 latest_github_tag() {
@@ -186,7 +230,7 @@ verify_node_asset() {
     local expected
     local actual
 
-    if ! download "https://nodejs.org/dist/${NODE_VERSION}/SHASUMS256.txt" "$checksums"; then
+    if ! download_node "SHASUMS256.txt" "$checksums"; then
         warn "无法获取 Node.js 官方校验文件，跳过 SHA-256 校验"
         return 0
     fi
@@ -301,11 +345,10 @@ install_node() {
     local archive="$PLUGIN_DATA_DIR/node-${NODE_VERSION}-${NODE_PLATFORM}-${NODE_ARCH}.tar.gz"
     local temp_dir
     temp_dir="$(mktemp -d "${TMPDIR:-/tmp}/neovimplus-node.XXXXXX")"
-    local url="https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-${NODE_PLATFORM}-${NODE_ARCH}.tar.gz"
     local asset="node-${NODE_VERSION}-${NODE_PLATFORM}-${NODE_ARCH}.tar.gz"
 
     log "安装 Node.js ${NODE_VERSION}（供 coc.nvim 使用）"
-    download "$url" "$archive"
+    download_node "$asset" "$archive"
     verify_node_asset "$archive" "$asset"
     tar -xzf "$archive" -C "$temp_dir"
 
@@ -424,6 +467,11 @@ install_python_deps() {
     fi
 
     log "安装 Python provider、debugpy 与语言工具到全局环境：$python_bin"
+    if [ -z "${PIP_INDEX_URL:-}" ] \
+        && ! "$python_bin" -m pip config get global.index-url >/dev/null 2>&1; then
+        export PIP_INDEX_URL="$PYPI_INDEX_URL"
+        log "pip 未配置国内源，本次使用：$PIP_INDEX_URL"
+    fi
     if [ "$use_user_site" = 1 ]; then
         "$python_bin" -m pip install --disable-pip-version-check --upgrade --user \
             pynvim debugpy jedi-language-server cmakelang
@@ -551,8 +599,19 @@ install_plugins() {
     fi
 
     log "安装 C/C++ 与 Python 语言服务"
-    NEOVIMPLUS_INSTALLING=1 "$nvim" --headless -i NONE \
-        "+CocInstall -sync coc-clangd coc-pyright coc-cmake coc-json" "+qa"
+    local npm_registry=""
+    if command -v npm >/dev/null 2>&1 \
+        && [ "$(npm config get registry 2>/dev/null || true)" = "https://registry.npmjs.org/" ]; then
+        npm_registry="$NPM_REGISTRY"
+        log "npm 未配置国内源，本次使用：$npm_registry"
+    fi
+    if [ -n "$npm_registry" ]; then
+        npm_config_registry="$npm_registry" NEOVIMPLUS_INSTALLING=1 "$nvim" --headless -i NONE \
+            "+CocInstall -sync coc-clangd coc-pyright coc-cmake coc-json" "+qa"
+    else
+        NEOVIMPLUS_INSTALLING=1 "$nvim" --headless -i NONE \
+            "+CocInstall -sync coc-clangd coc-pyright coc-cmake coc-json" "+qa"
+    fi
 
     local extension
     for extension in coc-clangd coc-pyright coc-cmake coc-json; do
@@ -642,6 +701,92 @@ add_shell_path() {
     [ "$updated" = 1 ] || warn "无法写入 shell PATH 配置，请手动把 $BIN_DIR 加入 PATH"
 }
 
+prompt_yes_no() {
+    local prompt="$1"
+    local default="${2:-n}"
+    local hint="[y/N]"
+    local answer=""
+    local reader=""
+
+    [ "$default" = "y" ] && hint="[Y/n]"
+
+    # 明确要求非交互时不做任何提问，也不改动配置
+    if [ "${NEOVIMPLUS_NONINTERACTIVE:-0}" = "1" ]; then
+        return 1
+    fi
+
+    if [ -t 0 ]; then
+        reader="stdin"
+    elif { : < /dev/tty; } 2>/dev/null; then
+        reader="tty"
+    fi
+
+    if [ -z "$reader" ]; then
+        # 非交互执行（管道、CI）时默认不改动用户配置
+        [ "${NEOVIMPLUS_ASSUME_YES:-0}" = "1" ]
+        return
+    fi
+
+    printf '%s %s ' "$prompt" "$hint"
+    if [ "$reader" = "tty" ]; then
+        read -r answer < /dev/tty || answer=""
+    else
+        read -r answer || answer=""
+    fi
+    answer="${answer:-$default}"
+    case "$answer" in
+        y|Y|yes|YES) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+configure_npm_registry() {
+    command -v npm >/dev/null 2>&1 || return 0
+
+    local current
+    current="$(npm config get registry 2>/dev/null || true)"
+    [ "$current" = "https://registry.npmjs.org/" ] || return 0
+
+    log "可选配置：npm 源（当前仍是官方 registry.npmjs.org）"
+    if prompt_yes_no "是否写入 ~/.npmrc（registry=${NPM_REGISTRY}），让以后手动 :CocInstall 也走国内镜像？" y; then
+        if npm config set registry "$NPM_REGISTRY" >/dev/null 2>&1; then
+            log "已写入 ~/.npmrc：registry=${NPM_REGISTRY}（可用 npm config set registry https://registry.npmjs.org/ 还原）"
+        else
+            warn "写入 ~/.npmrc 失败，可手动执行：npm config set registry ${NPM_REGISTRY}"
+        fi
+    else
+        log "已跳过 npm 源配置（本次安装仍用国内镜像下载 coc 扩展）"
+    fi
+}
+
+configure_apt_mirror() {
+    local sources="/etc/apt/sources.list"
+    local backup
+
+    [ "$OS" = "linux" ] || return 0
+    [ -f "$sources" ] || return 0
+    grep -qE 'https?://(archive|security)\.ubuntu\.com' "$sources" || return 0
+
+    if [ "$(id -u)" != "0" ]; then
+        warn "跳过 apt 源配置：当前不是 root，可手动把 $sources 里的 archive.ubuntu.com 换成国内镜像"
+        return 0
+    fi
+
+    log "可选配置：Ubuntu apt 源（当前指向 archive.ubuntu.com）"
+    if ! prompt_yes_no "是否替换为清华 TUNA 镜像（会先备份 $sources）？" n; then
+        log "已跳过 apt 源配置"
+        return 0
+    fi
+
+    backup="${sources}.bak.$(date +%Y%m%d%H%M%S)"
+    cp -p "$sources" "$backup" || { warn "备份失败，未修改 apt 源"; return 0; }
+    sed -i \
+        -e 's#http://archive\.ubuntu\.com/ubuntu#https://mirrors.tuna.tsinghua.edu.cn/ubuntu#g' \
+        -e 's#http://security\.ubuntu\.com/ubuntu#https://mirrors.tuna.tsinghua.edu.cn/ubuntu#g' \
+        "$sources" || { warn "替换 apt 源失败，可用备份恢复：$backup"; return 0; }
+    log "apt 源已替换为清华 TUNA（备份：$backup），执行 apt-get update 后生效"
+}
+
 main() {
     detect_platform
     ensure_layout
@@ -664,6 +809,8 @@ main() {
     install_fonts
     install_plugins
     add_shell_path
+    configure_npm_registry
+    configure_apt_mirror
 
     log "安装完成"
     printf '  Neovim : %s (%s)\n' "$("$NVIM_ROOT/bin/nvim" --version | head -n 1)" "$BIN_DIR/nvim"

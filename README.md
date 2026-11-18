@@ -73,6 +73,22 @@ INSTALL_CLANGD=0 \
 ./install.sh
 ```
 
+各类下载默认已经优先走国内镜像（Node.js 走阿里云/npmmirror/清华，pip 走清华，coc 扩展走
+npmmirror），可用环境变量覆盖：
+
+```shell
+NODE_MIRRORS="https://mirrors.tuna.tsinghua.edu.cn/nodejs-release/" \
+NPM_REGISTRY="https://registry.npmmirror.com/" \
+PYPI_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple" \
+GITHUB_DIRECT=0 \
+./install.sh
+```
+
+安装结束时会交互式询问两项可选配置：是否把 npm 源写入 `~/.npmrc`（默认回答是），是否把
+Ubuntu 的 apt 源替换为清华 TUNA 镜像（默认回答否，且会先备份 `/etc/apt/sources.list`）。
+在 CI 或管道中执行时不会提问，也不会改动任何配置；需要自动确认可用
+`NEOVIMPLUS_ASSUME_YES=1`，需要完全不提问可用 `NEOVIMPLUS_NONINTERACTIVE=1`。
+
 `INSTALL_CLANGD=0` 会跳过体积较大的 clangd 下载，此时 C/C++ 语法高亮和文件加载仍然可用，
 只是没有基于 clangd 的补全与诊断。安装脚本是幂等的，重复执行会复用已安装或已校验的内容。
 
